@@ -24,4 +24,6 @@
     <string name="nav_option_notes">Notes</string>
     <string name="nav_options_view_locations">View Networks</string>
     <string name="nav_option_about">About</string>
+    <string name="app_description">3D Sketch of your network topology</string>
+    <string name="action_cancel">CANCEL</string>
 </resources>

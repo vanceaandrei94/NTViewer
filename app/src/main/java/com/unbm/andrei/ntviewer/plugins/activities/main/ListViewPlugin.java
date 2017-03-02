@@ -30,17 +30,22 @@ public class ListViewPlugin extends NTViewerBasePlugin {
     }
 
     /**
-     * @param savedInstanceState Setup list items and create the adapter
+     * Setup list items and create the adapter
+     *
+     * @param savedInstanceState
      */
     @Override
     public void beforeOnCreate(Bundle savedInstanceState) {
         super.beforeOnCreate(savedInstanceState);
         networkLocationList = createTestList();    //TODO get list items from the database
+        //TODO Sort items by name
         mAdapter = new LocationsListAdapter(activity, R.layout.location_list_item, networkLocationList);
     }
 
     /**
-     * @param savedInstanceState Setup list view
+     * Setup ListView
+     *
+     * @param savedInstanceState
      */
     @Override
     public void afterOnCreate(Bundle savedInstanceState) {
@@ -55,6 +60,12 @@ public class ListViewPlugin extends NTViewerBasePlugin {
         testLocations.add(new NetworkLocation("TestLocation1"));
         testLocations.add(new NetworkLocation("TestLocation2"));
         testLocations.add(new NetworkLocation("TestLocation3"));
+        testLocations.add(new NetworkLocation("TestLocation4"));
+        testLocations.add(new NetworkLocation("TestLocation5"));
+        testLocations.add(new NetworkLocation("TestLocation6"));
+        testLocations.add(new NetworkLocation("TestLocation7"));
+        testLocations.add(new NetworkLocation("TestLocation8"));
+        testLocations.add(new NetworkLocation("TestLocation9"));
         return testLocations;
     }
 }

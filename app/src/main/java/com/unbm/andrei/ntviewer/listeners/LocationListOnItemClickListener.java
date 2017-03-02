@@ -21,6 +21,14 @@ public class LocationListOnItemClickListener implements AdapterView.OnItemClickL
         this.adapter = mAdapter;
     }
 
+    /**
+     * Each item starts the 3D Sketch View Activity for showing the 3D model of the network topology it holds
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d(TAG, "ListView Item clicked!");
