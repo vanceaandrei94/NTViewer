@@ -86,17 +86,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mapsClient.getGoogleClient());
                 if (mLastLocation != null) {
-                    CameraUpdate cameraUpdate1 = CameraUpdateFactory.newLatLngZoom(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 7);
+                    CameraUpdate cameraUpdate1 = CameraUpdateFactory.newLatLngZoom(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 12);
                     mMap.animateCamera(cameraUpdate1);
                 }
                 return true;
             }
         });
         //My Location
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSIONS_REQUEST_CODE);
-        }
         mMap.setMyLocationEnabled(true);
+
+        //TODO implement adding marker on long click
     }
 
 

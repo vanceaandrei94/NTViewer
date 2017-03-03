@@ -43,7 +43,7 @@ public class MapsClient implements GoogleApiClient.ConnectionCallbacks, GoogleAp
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.e(TAG, "Google Api Connection established");
+        Log.d(TAG, "Google Api Connection established");
     }
 
     @Override
