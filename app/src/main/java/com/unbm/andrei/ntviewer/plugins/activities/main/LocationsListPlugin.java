@@ -19,13 +19,13 @@ import java.util.List;
  * ListView Plugin class
  */
 
-public class ListViewPlugin extends NTViewerBasePlugin {
+public class LocationsListPlugin extends NTViewerBasePlugin {
 
     private ListView mListView;
     private LocationsListAdapter mAdapter;
     private List<NetworkLocation> networkLocationList;
 
-    public ListViewPlugin(AppCompatActivity activity) {
+    public LocationsListPlugin(AppCompatActivity activity) {
         super(activity);
     }
 
@@ -53,6 +53,8 @@ public class ListViewPlugin extends NTViewerBasePlugin {
         mListView = (ListView) activity.findViewById(R.id.location_names_list);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new LocationListOnItemClickListener(activity, mAdapter));
+
+        //TODO make calls to location servers to see if they are active (Async)
     }
 
     private List<NetworkLocation> createTestList() {

@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import com.unbm.andrei.ntviewer.listeners.NavigationItemSelectedListener;
 import com.unbm.andrei.ntviewer.listeners.OnAddLocationFabClickListener;
 import com.unbm.andrei.ntviewer.plugins.activities.common.PluginActivity;
-import com.unbm.andrei.ntviewer.plugins.activities.main.ListViewPlugin;
+import com.unbm.andrei.ntviewer.plugins.activities.main.LocationsListPlugin;
 
 public class MainActivity extends PluginActivity {
 
@@ -21,7 +21,7 @@ public class MainActivity extends PluginActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        addPlugin(new ListViewPlugin(this));
+        addPlugin(new LocationsListPlugin(this));
         setContentView(R.layout.activity_nav_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
