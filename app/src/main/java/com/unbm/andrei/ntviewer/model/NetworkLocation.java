@@ -8,6 +8,7 @@ public class NetworkLocation {
 
     private String name;
     private String ipAddress;
+    private boolean available = false;
 
     public NetworkLocation() {
     }
@@ -30,5 +31,13 @@ public class NetworkLocation {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

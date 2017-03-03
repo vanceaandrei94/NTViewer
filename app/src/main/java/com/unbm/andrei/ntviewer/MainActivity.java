@@ -1,9 +1,13 @@
 package com.unbm.andrei.ntviewer;
 
+import android.*;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -13,20 +17,32 @@ import android.view.MenuItem;
 import com.unbm.andrei.ntviewer.listeners.NavigationItemSelectedListener;
 import com.unbm.andrei.ntviewer.listeners.OnAddLocationFabClickListener;
 import com.unbm.andrei.ntviewer.plugins.activities.common.PluginActivity;
-import com.unbm.andrei.ntviewer.plugins.activities.main.ListViewPlugin;
+import com.unbm.andrei.ntviewer.plugins.activities.main.LocationsListPlugin;
+
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import static com.unbm.andrei.ntviewer.MapsActivity.LOCATION_PERMISSIONS_REQUEST_CODE;
 
 public class MainActivity extends PluginActivity {
 
     private ActionBarDrawerToggle mDrawerToggle;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        addPlugin(new ListViewPlugin(this));
+        addPlugin(new LocationsListPlugin(this));
         setContentView(R.layout.activity_nav_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setupUI();
+        checkPermissions();
         super.onCreate(savedInstanceState);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSIONS_REQUEST_CODE);
+        }
     }
 
     private void setupUI() {

@@ -20,9 +20,8 @@ import java.util.List;
 
 public class LocationsListAdapter extends ArrayAdapter<NetworkLocation> {
 
-    public LocationsListAdapter(Context context, int resource) {
-        super(context, resource);
-    }
+    private static final String SERVER_AVAILABLE = "available";
+    private static final String SERVER_UNAVAILABLE = "unavailable";
 
     public LocationsListAdapter(Context context, int resource, List<NetworkLocation> objects) {
         super(context, resource, objects);
@@ -48,8 +47,13 @@ public class LocationsListAdapter extends ArrayAdapter<NetworkLocation> {
         }
 
         if (availability != null) {
-            availability.setText("available");
-            availability.setTextColor(Color.GREEN);
+            if (location.isAvailable()) {
+                availability.setText(SERVER_AVAILABLE);
+                availability.setTextColor(Color.GREEN);
+            } else {
+                availability.setText(SERVER_UNAVAILABLE);
+                availability.setTextColor(Color.RED);
+            }
         }
 
         return v;

@@ -19,28 +19,33 @@ import java.util.List;
  * ListView Plugin class
  */
 
-public class ListViewPlugin extends NTViewerBasePlugin {
+public class LocationsListPlugin extends NTViewerBasePlugin {
 
     private ListView mListView;
     private LocationsListAdapter mAdapter;
     private List<NetworkLocation> networkLocationList;
 
-    public ListViewPlugin(AppCompatActivity activity) {
+    public LocationsListPlugin(AppCompatActivity activity) {
         super(activity);
     }
 
     /**
-     * @param savedInstanceState Setup list items and create the adapter
+     * Setup list items and create the adapter
+     *
+     * @param savedInstanceState
      */
     @Override
     public void beforeOnCreate(Bundle savedInstanceState) {
         super.beforeOnCreate(savedInstanceState);
         networkLocationList = createTestList();    //TODO get list items from the database
+        //TODO Sort items by name
         mAdapter = new LocationsListAdapter(activity, R.layout.location_list_item, networkLocationList);
     }
 
     /**
-     * @param savedInstanceState Setup list view
+     * Setup ListView
+     *
+     * @param savedInstanceState
      */
     @Override
     public void afterOnCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class ListViewPlugin extends NTViewerBasePlugin {
         mListView = (ListView) activity.findViewById(R.id.location_names_list);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new LocationListOnItemClickListener(activity, mAdapter));
+
+        //TODO make calls to location servers to see if they are active (Async)
     }
 
     private List<NetworkLocation> createTestList() {
@@ -55,6 +62,12 @@ public class ListViewPlugin extends NTViewerBasePlugin {
         testLocations.add(new NetworkLocation("TestLocation1"));
         testLocations.add(new NetworkLocation("TestLocation2"));
         testLocations.add(new NetworkLocation("TestLocation3"));
+        testLocations.add(new NetworkLocation("TestLocation4"));
+        testLocations.add(new NetworkLocation("TestLocation5"));
+        testLocations.add(new NetworkLocation("TestLocation6"));
+        testLocations.add(new NetworkLocation("TestLocation7"));
+        testLocations.add(new NetworkLocation("TestLocation8"));
+        testLocations.add(new NetworkLocation("TestLocation9"));
         return testLocations;
     }
 }

@@ -2,18 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/list_item_padding_bot"
+    android:paddingEnd="@dimen/list_item_right_padding"
+    android:paddingStart="@dimen/list_item_left_padding"
+    android:paddingTop="@dimen/list_item_padding_top">
 
     <TextView
         android:id="@+id/list_location_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="Roboto Regular"
         android:textColor="#000"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/list_server_availability"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:fontFamily="Roboto Regular"
+        android:textSize="14sp" />
 
 </LinearLayout>
