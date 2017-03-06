@@ -5,14 +5,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,19 +18,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.unbm.andrei.ntviewer.api.google.MapsClient;
+import com.unbm.andrei.ntviewer.db.DBOperations;
+import com.unbm.andrei.ntviewer.listeners.AddMarkerOnMapLongClickListener;
+import com.unbm.andrei.ntviewer.listeners.ShowSnackBarOnMarkerClickListener;
+import com.unbm.andrei.ntviewer.model.NetworkLocation;
 
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    DBOperations dbOperations;
+
     public static final int LOCATION_PERMISSIONS_REQUEST_CODE = 1;
-    /**
-     * TODO maps activity
-     * Add/remove markers
-     * Save markers in db
-     * Markers have associated IP address of the server where you need to make calls
-     * Markers can take you to 3D building sketch view
-     */
     private GoogleMap mMap;
     private Location mLastLocation;
     private MapsClient mapsClient;
@@ -48,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mapsClient = new MapsClient(getApplicationContext());
+        dbOperations = NTViewerApplication.getInstance().getDbOperations();
     }
 
     @Override
@@ -62,6 +58,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapsClient.disconnect();
     }
 
+    @Override
+    protected void onDestroy() {
+        dbOperations.closeConnection();
+        super.onDestroy();
+    }
 
     /**
      * Manipulates the map once available.
@@ -76,7 +77,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //My Location Button
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
@@ -92,11 +92,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return true;
             }
         });
-        //My Location
         mMap.setMyLocationEnabled(true);
+        mMap.setOnMapLongClickListener(new AddMarkerOnMapLongClickListener(this, dbOperations, mMap));
+        mMap.setOnMarkerClickListener(new ShowSnackBarOnMarkerClickListener(this));
 
-        //TODO implement adding marker on long click
+        showMarkers();
     }
 
-
+    private void showMarkers() {
+        List<NetworkLocation> locationList = NTViewerApplication.getInstance().getLocationList();
+        for (NetworkLocation location : locationList) {
+            LatLng position = new LatLng(location.getLat(), location.getLon());
+            MarkerOptions marker = new MarkerOptions().position(position).title(location.getName());
+            mMap.addMarker(marker);
+        }
+    }
 }

@@ -1,8 +1,8 @@
 package com.unbm.andrei.ntviewer;
 
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,7 @@ public class SketchViewActivity extends AppCompatActivity implements View.OnTouc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_sketch_view);
 
         SurfaceView surfaceView = new SurfaceView(this);
@@ -30,12 +31,11 @@ public class SketchViewActivity extends AppCompatActivity implements View.OnTouc
 
         renderer = new SceneRenderer(this);
         surfaceView.setSurfaceRenderer(renderer);
-
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         renderer.onTouchEvent(event);
-        return true;
+        return super.onTouchEvent(event);
     }
 }

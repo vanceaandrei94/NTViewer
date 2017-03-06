@@ -8,19 +8,40 @@
     android:paddingStart="@dimen/list_item_left_padding"
     android:paddingTop="@dimen/list_item_padding_top">
 
-    <TextView
-        android:id="@+id/list_location_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="Roboto Regular"
-        android:textColor="#000"
-        android:textSize="18sp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/list_server_availability"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="Roboto Regular"
-        android:textSize="14sp" />
+        <CheckBox
+            android:id="@+id/note_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:padding="2dp"
+            android:visibility="invisible" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/item_container">
+
+            <TextView
+                android:id="@+id/list_location_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="Roboto Regular"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/list_server_availability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="Roboto Regular"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

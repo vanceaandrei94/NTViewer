@@ -1,6 +1,7 @@
 package com.unbm.andrei.ntviewer.graphics.scene.objects;
 
 
+import org.rajawali3d.Object3D;
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.methods.DiffuseMethod;
 import org.rajawali3d.math.vector.Vector3;
@@ -16,10 +17,10 @@ import java.util.List;
 
 public class CubeObjects {
 
-    private Scene scene;
+    private Object3D scene;
     private List<Cube> cubes;
 
-    public CubeObjects(Scene scene) {
+    public CubeObjects(Object3D scene) {
         this.scene = scene;
         cubes = new ArrayList<>();
     }

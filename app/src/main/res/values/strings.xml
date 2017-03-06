@@ -26,4 +26,9 @@
     <string name="app_description">3D Sketch of your network topology</string>
     <string name="action_cancel">Cancel</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="dialog_btn_ok">OK</string>
+    <string name="dialog_btn_cancel">Cancel</string>
+    <string name="ip_set_dialog_title">Set Address</string>
+    <string name="action_delete">Delete</string>
 </resources>
