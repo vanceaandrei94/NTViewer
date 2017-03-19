@@ -8,55 +8,31 @@ public class NetworkLocation {
 
     private int id;
     private String name;
-    private String ipAddress;
     private double lat;
     private double lon;
-    private boolean available = false;
+    private Network network;
 
-    public NetworkLocation() {
+    public NetworkLocation(String name, double lat, double lon) {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        network = new Network(name);
     }
 
-    public NetworkLocation(int id, String name, String ipAddress, double lat, double lon) {
+    public NetworkLocation(int id, String name, double lat, double lon, Network network) {
         this.id = id;
         this.name = name;
-        this.ipAddress = ipAddress;
         this.lat = lat;
         this.lon = lon;
+        this.network = network;
     }
 
-    public NetworkLocation(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
     }
 
-    public NetworkLocation(String name, String ipAddress, double lat, double lon) {
-        this.name = name;
-        this.ipAddress = ipAddress;
-        this.lat = lat;
-        this.lon = lon;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getLat() {
@@ -75,11 +51,19 @@ public class NetworkLocation {
         this.lon = lon;
     }
 
-    public int getId() {
-        return id;
+    public Network getNetwork() {
+        return network;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

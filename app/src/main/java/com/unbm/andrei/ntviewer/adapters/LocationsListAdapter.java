@@ -46,16 +46,6 @@ public class LocationsListAdapter extends ArrayAdapter<NetworkLocation> {
             name.setText(location.getName());
         }
 
-        if (availability != null) {
-            if (location.isAvailable()) {
-                availability.setText(SERVER_AVAILABLE);
-                availability.setTextColor(Color.GREEN);
-            } else {
-                availability.setText(SERVER_UNAVAILABLE);
-                availability.setTextColor(Color.RED);
-            }
-        }
-
         return v;
     }
 }

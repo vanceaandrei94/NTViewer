@@ -1,4 +1,4 @@
-package com.unbm.andrei.ntviewer.listeners;
+package com.unbm.andrei.ntviewer.navigation;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;

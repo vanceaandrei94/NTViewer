@@ -1,8 +1,10 @@
 package com.unbm.andrei.ntviewer;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,21 +16,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.unbm.andrei.ntviewer.adapters.LocationsListAdapter;
-import com.unbm.andrei.ntviewer.listeners.LocationListOnItemClickListener;
-import com.unbm.andrei.ntviewer.listeners.NavigationItemSelectedListener;
-import com.unbm.andrei.ntviewer.listeners.OnAddLocationFabClickListener;
 import com.unbm.andrei.ntviewer.model.NetworkLocation;
+import com.unbm.andrei.ntviewer.navigation.NavigationItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,10 +38,11 @@ import java.util.List;
 import java.util.Map;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static com.unbm.andrei.ntviewer.MapsActivity.LOCATION_PERMISSIONS_REQUEST_CODE;
+import static com.unbm.andrei.ntviewer.MapsActivity.REQUEST_PERMISSIONS_CODE;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "[MainActivity]";
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView mListView;
     private LocationsListAdapter mAdapter;
@@ -53,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nav_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        checkPermissions();
         selectedLocations = new HashMap<>();
         setupUI();
         setupListView();
-        checkPermissions();
     }
 
     private void setupListView() {
@@ -64,7 +67,15 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new LocationsListAdapter(this, R.layout.location_list_item, networkLocationList);
         mListView = (ListView) this.findViewById(R.id.location_names_list);
         mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new LocationListOnItemClickListener(this, mAdapter));
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO send data associated with the list item location
+                //get the data by making a http request to the server that holds the data
+                //start activity only if the request succeeds else show a message that the network isn't available
+                startActivity(new Intent(MainActivity.this, SketchViewActivity.class));
+            }
+        });
         mListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         mListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
             @Override
@@ -109,16 +120,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
-            requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSIONS_REQUEST_CODE);
-        }
-    }
-
     private void setupUI() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new OnAddLocationFabClickListener(this));
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -218,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void deleteSelectedLocations() {
         for (Integer key : selectedLocations.keySet()) {
-            NTViewerApplication.getInstance().getDbOperations().delete(selectedLocations.get(key));
+            NTViewerApplication.getInstance().getDbOperations().deleteLocationCascade(selectedLocations.get(key));
             networkLocationList.remove(selectedLocations.get(key));
             mAdapter.notifyDataSetChanged();
         }
@@ -233,4 +242,13 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSIONS_CODE);
+        }
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.INTERNET) != PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.INTERNET}, REQUEST_PERMISSIONS_CODE);
+        }
+    }
 }
