@@ -1,6 +1,8 @@
 package com.unbm.andrei.ntviewer.navigation;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,10 +20,12 @@ public class NavigationItemSelectedListener implements NavigationView.OnNavigati
 
     private AppCompatActivity activity;
     private DrawerLayout drawer;
+    private Handler handler;
 
     public NavigationItemSelectedListener(AppCompatActivity activity, DrawerLayout drawer) {
         this.activity = activity;
         this.drawer = drawer;
+        handler = new Handler(Looper.getMainLooper());
     }
 
     @Override
@@ -31,7 +35,8 @@ public class NavigationItemSelectedListener implements NavigationView.OnNavigati
 
         switch (id) {
             case R.id.nav_view_locations:
-                activity.startActivity(new Intent(activity, MapsActivity.class));
+                handler.postDelayed(() -> activity.startActivity(new Intent(activity, MapsActivity.class)), 300);
+
                 break;
             case R.id.nav_about:
                 //TODO start "about" activity

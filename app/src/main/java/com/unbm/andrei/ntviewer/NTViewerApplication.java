@@ -1,11 +1,7 @@
 package com.unbm.andrei.ntviewer;
 
 import android.app.Application;
-
-import com.unbm.andrei.ntviewer.db.DBOperations;
-import com.unbm.andrei.ntviewer.model.NetworkLocation;
-
-import java.util.List;
+import android.location.Location;
 
 /**
  * Created by andrei.vancea on 3/6/2017.
@@ -14,8 +10,7 @@ import java.util.List;
 public class NTViewerApplication extends Application {
 
     private static NTViewerApplication app;
-    private DBOperations dbOperations;
-    private List<NetworkLocation> locations;
+    private Location lastKnownLocation;
 
     public static NTViewerApplication getInstance() {
         return app;
@@ -25,15 +20,13 @@ public class NTViewerApplication extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
-        dbOperations = new DBOperations(this);
-        this.locations = dbOperations.getLocations();
     }
 
-    public List<NetworkLocation> getLocationList() {
-        return locations;
+    public Location getLastKnownLocation() {
+        return lastKnownLocation;
     }
 
-    public DBOperations getDbOperations() {
-        return dbOperations;
+    public void setLastKnownLocation(Location lastKnownLocation) {
+        this.lastKnownLocation = lastKnownLocation;
     }
 }
