@@ -12,4 +12,6 @@
     <dimen name="list_item_padding_top">20dp</dimen>
     <dimen name="list_item_right_padding">16dp</dimen>
     <dimen name="fab_resting_elevation">6dp</dimen>
+    <dimen name="status_bullet_diameter">25dp</dimen>
+
 </resources>

@@ -46,17 +46,17 @@ public class MainActivity extends AppCompatActivity implements MainView {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mainPresenter = new MainPresenterImpl(this);
-        mainPresenter.loadAllNetworkSites();
         checkPermissions();
         setupUI();
         setupListView();
+        mainPresenter.loadAllNetworkSites();
     }
 
     private void setupListView() {
         mAdapter = new SiteListAdapter(this, R.layout.location_list_item);
         mListView = (ListView) this.findViewById(R.id.location_names_list);
         mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener((parent, view, position, id) -> mainPresenter.onItemClicked(position));
+        mListView.setOnItemClickListener((parent, view, position, id) -> mainPresenter.onItemClicked(position, this));
     }
 
     private void setupUI() {

@@ -26,14 +26,6 @@ public class NetworkSite {
         networkNodes = new ArrayList<>();
     }
 
-    public void addNode(NetworkNode node) {
-        networkNodes.add(node);
-    }
-
-    public void removeNode(NetworkNode node) {
-        networkNodes.remove(node);
-    }
-
     public NetworkNode getNetworkNodeByMapObject(Circle circle) {
         for (NetworkNode node : networkNodes) {
             LatLng circleLoc = circle.getCenter();

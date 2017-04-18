@@ -15,9 +15,11 @@ public class NetworkTestHelper {
 
     public static NetworkSite getTestNetworkSite(double offset) {
         NetworkSite networkSite = new NetworkSite();
-        networkSite.addNode(new NetworkNode(47.663753 + offset, 23.572497 + offset));
-        networkSite.addNode(new SubscriberNode(47.659301 + offset, 23.573527 + offset, "1.2.3.4"));
-        networkSite.addNode(new NetworkNode(47.653693 + offset, 23.565803 + offset));
+        List<NetworkNode> nodes = new ArrayList<>();
+        nodes.add(new NetworkNode(47.663753 + offset, 23.572497 + offset));
+        nodes.add(new SubscriberNode(47.659301 + offset, 23.573527 + offset, "1.2.3.4"));
+        nodes.add(new NetworkNode(47.653693 + offset, 23.565803 + offset));
+        networkSite.setNetworkNodes(nodes);
         return networkSite;
     }
 

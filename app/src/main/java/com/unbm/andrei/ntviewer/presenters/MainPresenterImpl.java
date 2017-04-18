@@ -1,11 +1,17 @@
 package com.unbm.andrei.ntviewer.presenters;
 
-import com.google.android.gms.location.LocationServices;
+import android.content.Context;
+import android.content.Intent;
+
+import com.unbm.andrei.ntviewer.SiteInfoActivity;
 import com.unbm.andrei.ntviewer.model.NetworkSite;
 import com.unbm.andrei.ntviewer.service.NetworkApi;
 import com.unbm.andrei.ntviewer.service.api.INetworkServiceProvider;
+import com.unbm.andrei.ntviewer.test.helper.NetworkTestHelper;
 import com.unbm.andrei.ntviewer.views.MainView;
+import com.unbm.andrei.ntviewer.views.SiteInfoView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -32,8 +38,9 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void onItemClicked(int position) {
-
+    public void onItemClicked(int position, Context context) {
+        Intent intent = new Intent(context, SiteInfoActivity.class);
+        context.startActivity(intent);
     }
 
     @Override
@@ -43,10 +50,14 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void loadAllNetworkSites() {
-        Observable<List<NetworkSite>> loadSites = networkApi.getAllSites();
-        loadSites.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::loadNetworkSites);
+//        Observable<List<NetworkSite>> loadSites = networkApi.getAllSites();
+//        loadSites.subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(this::loadNetworkSites);
+
+        List<NetworkSite> networkSites = new ArrayList<>();
+        networkSites.add(NetworkTestHelper.getTestNetworkSite());
+        loadNetworkSites(networkSites);
     }
 
     private void loadNetworkSites(List<NetworkSite> sites) {

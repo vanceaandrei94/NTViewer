@@ -31,4 +31,5 @@
     <string name="dialog_btn_cancel">Cancel</string>
     <string name="ip_set_dialog_title">Set Address</string>
     <string name="action_delete">Delete</string>
+    <string name="site_info_nodes">Nodes:</string>
 </resources>
