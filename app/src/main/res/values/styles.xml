@@ -58,4 +58,9 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
+    <style name="TitleText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 </resources>
