@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 .build().inject(this);
 
         setContentView(view);
-
         presenter.onCreate();
     }
 

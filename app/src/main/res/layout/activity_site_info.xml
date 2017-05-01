@@ -3,94 +3,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
-    tools:context="com.unbm.andrei.ntviewer.SiteInfoActivity">
+    tools:context="com.unbm.andrei.ntviewer.activities.siteinfo.SiteInfoActivity">
+
+    <RelativeLayout
+        android:id="@+id/site_info_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/quality_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <View
+                android:id="@+id/site_badge"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/badge_good"
+                android:padding="2dp" />
+
+            <TextView
+                android:id="@+id/site_quality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="Roboto Regular"
+                android:paddingStart="5dp"
+                android:text="site_quality"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/has_problems_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/problems_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Roboto Regular"
+                android:paddingStart="5dp"
+                android:text="Problems:"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/subscriber_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:text="NONE" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/subscribers_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/site_info_area"
         android:orientation="vertical">
 
-
-        <RelativeLayout
-            android:id="@+id/site_properties"
+        <TextView
+            android:id="@+id/subscribers_label"
+            style="@style/TitleText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Subscribers:" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/site_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Site Name"
-                    android:textColor="#000"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/site_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/state"
-                    android:text="Active" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="4dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/site_number_of_nodes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/site_info_nodes"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/site_nodes_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="4"
-                    android:textColor="#000"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <View style="@style/Divider" />
-
-        <RelativeLayout
-            android:id="@+id/site_properties_area"
+        <ListView
+            android:id="@+id/subscribers_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ListView
-                android:id="@+id/site_info_node_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </ListView>
-        </RelativeLayout>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/show_on_map_fab"
         android:layout_width="wrap_content"
-        android:elevation="@dimen/fab_resting_elevation"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_map"
-        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content" />
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:elevation="@dimen/fab_resting_elevation"
+        android:src="@android:drawable/ic_dialog_map" />
 </RelativeLayout>

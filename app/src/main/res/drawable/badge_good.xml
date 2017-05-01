@@ -3,8 +3,8 @@
     android:shape="oval">
     <stroke
         android:width="2dp"
-        android:color="@color/color_available" />
-    <solid android:color="@color/color_available" />
+        android:color="@color/color_badge_good" />
+    <solid android:color="@color/color_badge_good" />
 
     <size
         android:width="50dp"

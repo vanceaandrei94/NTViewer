@@ -3,14 +3,20 @@ package com.unbm.andrei.ntviewer.activities.main.config.mvp.view;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding2.widget.RxAbsListView;
+import com.jakewharton.rxbinding2.widget.RxAdapter;
+import com.jakewharton.rxbinding2.widget.RxAdapterView;
 import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
 import com.unbm.andrei.ntviewer.application.network.models.NetworkSite;
+import com.unbm.andrei.ntviewer.application.network.models.Site;
 
 import java.util.List;
 
@@ -56,13 +62,19 @@ public class MainView extends FrameLayout {
         }
     }
 
-    public void updateSitesList(List<NetworkSite> siteList) {
+    public void updateSitesList(List<Site> siteList) {
         sitesAdapter.swapData(siteList);
     }
 
     private void setupUIComponents(MainActivity activity) {
         activity.setSupportActionBar(toolbar);
         listView.setAdapter(sitesAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO: 5/1/2017 find a way to implement this using RxJava
+            }
+        });
     }
 
     public void showToast(String message) {

@@ -6,6 +6,6 @@
         android:height="50dp" />
     <stroke
         android:width="2dp"
-        android:color="@color/color_unavailable" />
-    <solid android:color="@color/color_unavailable" />
+        android:color="@color/color_badge_bad" />
+    <solid android:color="@color/color_badge_bad" />
 </shape>

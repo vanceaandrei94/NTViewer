@@ -1,11 +1,12 @@
 package com.unbm.andrei.ntviewer.application.network;
 
-import com.unbm.andrei.ntviewer.application.network.models.NetworkSite;
+import com.unbm.andrei.ntviewer.application.network.models.Site;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by Andrei on 4/30/2017.
@@ -13,8 +14,34 @@ import retrofit2.http.GET;
 
 public interface SitesProviderService {
 
-    String BASE_URL = "http://provider-name.ro/services/ntviewer";
+    String BASE_URL = "http://provider-name.ro/services/ntviewer/";
 
+    /**
+     * This method will return all sites found on the server.
+     *
+     * @return List&lt;{@link com.unbm.andrei.ntviewer.application.network.models.Site}&gt;
+     */
     @GET("/allSites")
-    Observable<List<NetworkSite>> getAllNetworkSites();
+    Observable<List<Site>> getAllNetworkSites();
+
+    /**
+     * By providing your current location this method will return the closest site
+     *
+     * @param lat latitude of your current location
+     * @param lon longitude of your current location
+     * @return
+     */
+    @GET("/closestSite")
+    Observable<Site> getClosestSite(@Query("lat") double lat, @Query("lon") double lon);
+
+
+    /**
+     * This method will return given number of Sites
+     *
+     * @param limit Number of sites to get
+     * @return List&lt;{@link com.unbm.andrei.ntviewer.application.network.models.Site}&gt;
+     */
+    @GET("/sites")
+    Observable<List<Site>> getSites(@Query("limit") int limit);
+
 }

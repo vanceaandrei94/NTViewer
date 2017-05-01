@@ -31,6 +31,6 @@
             android:id="@+id/node_status"
             style="@style/TwoLineListItemIcon"
             android:visibility="visible"
-            android:src="@drawable/status_circle_available" />
+            android:src="@drawable/badge_good" />
     </RelativeLayout>
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.unbm.andrei.ntviewer.application.dagger.modules;
 import android.content.Context;
 
 import com.unbm.andrei.ntviewer.application.dagger.AppScope;
+import com.unbm.andrei.ntviewer.application.network.FakeInterceptor;
 import com.unbm.andrei.ntviewer.application.network.SitesProviderService;
 
 import java.io.File;
@@ -52,6 +53,7 @@ public class NetworkModule {
     public OkHttpClient provideOkHttpClient(HttpLoggingInterceptor loggingInterceptor, Cache cache) {
         return new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(new FakeInterceptor()) // TODO: 5/1/2017 remove this whenyou have a server
                 .cache(cache)
                 .build();
     }

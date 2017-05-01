@@ -3,8 +3,10 @@ package com.unbm.andrei.ntviewer.activities.main.config.mvp;
 import android.app.Activity;
 
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
+import com.unbm.andrei.ntviewer.activities.siteinfo.SiteInfoActivity;
 import com.unbm.andrei.ntviewer.application.network.SitesProviderService;
 import com.unbm.andrei.ntviewer.application.network.models.NetworkSite;
+import com.unbm.andrei.ntviewer.application.network.models.Site;
 
 import java.util.List;
 
@@ -24,7 +26,11 @@ public class MainModel {
         this.activity = activity;
     }
 
-    public Observable<List<NetworkSite>> getAllSites() {
+    public Observable<List<Site>> getAllSites() {
         return sitesProviderService.getAllNetworkSites();
+    }
+
+    public void startSiteInfoActivity(Site site) {
+        SiteInfoActivity.start(activity, site);
     }
 }

@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#4527A0</color>
     <color name="colorAccent">#7C4DFF</color>
 
-    <color name="color_available">#00FF00</color>
-    <color name="color_unavailable">#FF0000</color>
+    <color name="color_badge_good">#00FF00</color>
+    <color name="color_badge_bad">#FF0000</color>
+    <color name="color_badge_average">#FFFF00</color>
 
 </resources>

@@ -56,7 +56,10 @@ public class MainPresenter extends BasePresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .retry(3)
-                .subscribe(sites -> view.updateSitesList(sites), __ -> view.showToast(SITES_LOADING_ERROR));
+                .subscribe(sites -> view.updateSitesList(sites), e -> {
+                    view.showToast(SITES_LOADING_ERROR);
+                    e.printStackTrace();
+                });
     }
 
     public void onDestroy() {

@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.unbm.andrei.ntviewer.application.network.models.NetworkSite;
+import com.unbm.andrei.ntviewer.application.network.models.Site;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class SitesAdapter extends BaseAdapter {
 
-    private final List<NetworkSite> siteList = new ArrayList<>(0);
+    private final List<Site> siteList = new ArrayList<>(0);
 
     @Override
     public int getCount() {
@@ -40,11 +41,11 @@ public class SitesAdapter extends BaseAdapter {
         } else {
             siteItem = (SiteItem) convertView;
         }
-        siteItem.setItem(siteList.get(position));
+        siteItem.setItem(siteList.get(position).getNetworkSite());
         return siteItem;
     }
 
-    public void swapData(List<NetworkSite> sites) {
+    public void swapData(List<Site> sites) {
         siteList.clear();
         if (sites != null && !sites.isEmpty()) {
             siteList.addAll(sites);
