@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context="com.unbm.andrei.ntviewer.activities.siteinfo.SiteInfoActivity">
 
     <RelativeLayout
         android:id="@+id/site_info_area"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/default_left_right_padding"
+        android:paddingStart="@dimen/default_left_right_padding">
 
         <LinearLayout
             android:id="@+id/quality_area"
@@ -19,18 +20,14 @@
 
             <View
                 android:id="@+id/site_badge"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/badge_good"
-                android:padding="2dp" />
+                style="@style/Badge"
+                android:background="@drawable/badge_good" />
 
             <TextView
                 android:id="@+id/site_quality"
-                android:layout_width="match_parent"
+                style="@style/BaseText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="Roboto Regular"
-                android:paddingStart="5dp"
                 android:text="site_quality"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -52,12 +49,12 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/subscriber_name"
+                android:id="@+id/problems_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="4dp"
-                android:text="NONE" />
+                android:text="2" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -74,10 +71,13 @@
             style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/default_left_right_padding"
+            android:paddingStart="@dimen/default_left_right_padding"
             android:text="Subscribers:" />
 
         <ListView
             android:id="@+id/subscribers_list"
+            style="@style/BaseListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

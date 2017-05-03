@@ -23,7 +23,7 @@ public class FakeInterceptor implements Interceptor {
         String responseString;
 
         if (chain.request().url().toString().contains(ALL_SITES)) {
-            responseString = Helper.SECOND_JSON;
+            responseString = Helper.GET_ALL_SITES_JSON;
             response = new Response.Builder()
                     .code(200)
                     .message(responseString)

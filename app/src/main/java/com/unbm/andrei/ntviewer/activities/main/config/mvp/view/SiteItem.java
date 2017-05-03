@@ -1,9 +1,7 @@
 package com.unbm.andrei.ntviewer.activities.main.config.mvp.view;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.DrawableUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -36,7 +34,7 @@ public class SiteItem extends FrameLayout {
 
     public SiteItem(@NonNull Context context) {
         super(context);
-        inflate(context, R.layout.site_list_item, this);
+        inflate(context, R.layout.main_list_item, this);
         ButterKnife.bind(this);
     }
 

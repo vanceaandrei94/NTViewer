@@ -46,6 +46,7 @@ public class SiteInfoActivity extends AppCompatActivity {
                 .siteModule(new SiteModule(this))
                 .build().inject(this);
 
+        setContentView(view);
         presenter.onCreate();
     }
 

@@ -33,20 +33,23 @@
     </style>
 
     <style name="TwoLineListItem">
-        <item name="android:paddingStart">72dp</item>
+        <item name="android:paddingStart">56dp</item>
         <item name="android:layout_height">72dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="TwoLineListItemTextView">
-        <item name="android:fontFamily">Roboto Regular</item>
+    <style name="TwoLineListItemTextView" parent="BaseText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="FirstListItem" parent="TwoLineListItemTextView">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/black</item>
     </style>
+
     <style name="SecondListItem" parent="TwoLineListItemTextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@android:color/darker_gray</item>
@@ -61,6 +64,27 @@
     <style name="TitleText">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="BaseText">
+        <item name="android:fontFamily">Roboto Regular</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="BaseListView">
+        <item name="android:paddingTop">@dimen/list_padding_top</item>
+        <item name="android:paddingStart">@dimen/list_padding_start</item>
+        <item name="android:paddingEnd">@dimen/list_padding_end</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Badge">
+        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:padding">2dp</item>
     </style>
 
 </resources>

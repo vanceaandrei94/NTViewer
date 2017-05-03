@@ -69,7 +69,7 @@ public class Helper {
             "\t}\n" +
             "}]";
 
-    public static final String SECOND_JSON = "[{\n" +
+    public static final String GET_ALL_SITES_JSON = "[{\n" +
             "\t\"NetworkSite\": {\n" +
             "\t\t\"site_name\": \"First Site\",\n" +
             "\t\t\"site_quality\": \"average\",\n" +
