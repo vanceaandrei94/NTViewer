@@ -9,21 +9,14 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jakewharton.rxbinding2.view.RxView;
-import com.jakewharton.rxbinding2.widget.RxAbsListView;
-import com.jakewharton.rxbinding2.widget.RxAdapter;
-import com.jakewharton.rxbinding2.widget.RxAdapterView;
 import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
-import com.unbm.andrei.ntviewer.application.network.models.NetworkSite;
 import com.unbm.andrei.ntviewer.application.network.models.Site;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by Andrei on 4/30/2017.
@@ -35,10 +28,6 @@ public class MainView extends FrameLayout {
     private final ProgressDialog progressDialog = new ProgressDialog(getContext());
     private final SitesAdapter sitesAdapter = new SitesAdapter();
 
-    // TODO: 4/30/2017 BIND VIEWS HERE (Build layout)
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
     @BindView(R.id.sites_list)
     ListView listView;
 
@@ -49,10 +38,6 @@ public class MainView extends FrameLayout {
         setupUIComponents(activity);
     }
 
-    //example of click observer
-    public Observable<Object> observeButton() {
-        return RxView.clicks(toolbar);
-    }
 
     public void showLoading(boolean show) {
         if (show) {
@@ -67,7 +52,6 @@ public class MainView extends FrameLayout {
     }
 
     private void setupUIComponents(MainActivity activity) {
-        activity.setSupportActionBar(toolbar);
         listView.setAdapter(sitesAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

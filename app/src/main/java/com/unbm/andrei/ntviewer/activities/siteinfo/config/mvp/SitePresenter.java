@@ -1,6 +1,6 @@
 package com.unbm.andrei.ntviewer.activities.siteinfo.config.mvp;
 
-import com.unbm.andrei.ntviewer.base.mvp.BasePresenter;
+import com.unbm.andrei.ntviewer.activities.common.mvp.BasePresenter;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by Andrei on 5/1/2017.
  */
 
-public class SitePresenter extends BasePresenter {
+public class SitePresenter implements ISitePresenter, BasePresenter {
 
     private final SiteView view;
     private final SiteModel model;
@@ -19,12 +19,10 @@ public class SitePresenter extends BasePresenter {
         this.model = model;
     }
 
-    @Override
     public void onCreate() {
 
     }
 
-    @Override
     public void onDestroy() {
         compositeDisposable.dispose();
     }

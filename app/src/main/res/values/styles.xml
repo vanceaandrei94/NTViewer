@@ -33,12 +33,15 @@
     </style>
 
     <style name="TwoLineListItem">
-        <item name="android:paddingStart">56dp</item>
         <item name="android:layout_height">72dp</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TwoLineListItem.WithIcon" parent="TwoLineListItem">
+        <item name="android:paddingStart">56dp</item>
     </style>
 
     <style name="TwoLineListItemTextView" parent="BaseText">
