@@ -1,8 +1,10 @@
 package com.unbm.andrei.ntviewer.activities.login;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.activities.login.config.dagger.DaggerLoginComponent;
 import com.unbm.andrei.ntviewer.activities.login.config.dagger.LoginModule;
 import com.unbm.andrei.ntviewer.activities.login.config.mvp.LoginPresenter;
@@ -31,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
                 .inject(this);
 
         setContentView(view);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, null));
+        }
         view.setPresenter(presenter);
         presenter.onCreate();
     }

@@ -252,4 +252,5 @@ public class Helper {
                     "\"isWorking\":\"true\"" +
             "   }" +
             "}";
+    public static final String INVALID_CREDENTIALS = "{\"message\":\"Invalid Credentials\"}";
 }

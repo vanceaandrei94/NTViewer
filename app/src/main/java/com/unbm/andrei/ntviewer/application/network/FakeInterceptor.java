@@ -24,7 +24,11 @@ public class FakeInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Response response = null;
         String responseString;
-
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         switch (chain.request().url().pathSegments().get(0).toString()) {
             case ALL_SITES:
                 responseString = Helper.GET_ALL_SITES_JSON;
@@ -52,11 +56,14 @@ public class FakeInterceptor implements Interceptor {
                             .addHeader("content-type", "application/json")
                             .build();
                 } else {
+                    responseString = Helper.INVALID_CREDENTIALS;
                     response = new Response.Builder()
                             .code(401)
+                            .message(responseString)
                             .request(chain.request())
                             .protocol(Protocol.HTTP_1_1)
-                            .message("INVALID CREDENTIALS")
+                            .body(ResponseBody.create(MediaType.parse("application/json"), responseString.getBytes()))
+                            .addHeader("content-type", "application/json")
                             .build();
                 }
         }

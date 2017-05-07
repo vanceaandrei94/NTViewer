@@ -5,9 +5,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.unbm.andrei.ntviewer.R;
 
@@ -41,13 +43,22 @@ public class LoginView extends FrameLayout {
         super(context);
         inflate(getContext(), R.layout.activity_login, this);
         ButterKnife.bind(this);
+        progressDialog.setMessage("Signing in...");
     }
 
     @OnClick(R.id.btn_sign_in)
     void signIn() {
         String username = usernameEt.getText().toString();
         String password = passwordEt.getText().toString();
-        presenter.loginUser(username, password);
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+            presenter.loginUser(username, password);
+        } else {
+            showToast("Fields must not be empty");
+        }
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void showLoading(boolean show) {

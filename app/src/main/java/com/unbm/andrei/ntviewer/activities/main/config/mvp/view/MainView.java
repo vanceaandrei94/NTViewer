@@ -28,14 +28,12 @@ public class MainView extends FrameLayout {
     private final ProgressDialog progressDialog = new ProgressDialog(getContext());
     private final SitesAdapter sitesAdapter = new SitesAdapter();
 
-    @BindView(R.id.sites_list)
-    ListView listView;
-
     public MainView(MainActivity activity) {
         super(activity);
         inflate(activity, R.layout.activity_main, this);
         ButterKnife.bind(this);
         setupUIComponents(activity);
+        progressDialog.setMessage("Loading Data...");
     }
 
 
@@ -52,13 +50,7 @@ public class MainView extends FrameLayout {
     }
 
     private void setupUIComponents(MainActivity activity) {
-        listView.setAdapter(sitesAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: 5/1/2017 find a way to implement this using RxJava
-            }
-        });
+
     }
 
     public void showToast(String message) {

@@ -35,27 +35,30 @@ public class LoginPresenter implements BasePresenter {
     }
 
     public void loginUser(String username, String password) {
+        view.showLoading(true);
         Disposable loginDisposable = model.loginUser(username, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(__ -> view.showLoading(true))
                 .doOnEach(__ -> view.showLoading(false))
-                .subscribe(user -> startNextActivity(user));
+                .subscribe(user -> startNextActivity(user), t -> userLoginFailed(t));
         compositeDisposable.add(loginDisposable);
+    }
+
+    private void userLoginFailed(Throwable throwable) {
+        String message = throwable.getMessage();
+        view.showToast(message);
     }
 
     public Disposable preLoginUser() {
         return model.preLoginUser()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(__ -> view.showLoading(true))
-                .doOnEach(__ -> view.showLoading(false))
-                .subscribe(user -> startNextActivity(user), __-> {});
+                .subscribe(user -> startNextActivity(user), __ -> {
+                });
     }
 
     private void startNextActivity(User user) {
         model.startMainActivity(user);
     }
-
 
 }

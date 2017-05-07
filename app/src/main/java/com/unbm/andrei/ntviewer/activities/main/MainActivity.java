@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(view);
         presenter.onCreate();
+        getSupportActionBar().setTitle("Profile");
     }
 
     @Override

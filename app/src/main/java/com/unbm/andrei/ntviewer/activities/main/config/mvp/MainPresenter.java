@@ -32,10 +32,10 @@ public class MainPresenter implements BasePresenter {
     }
 
     public Disposable showSitesList() {
+        view.showLoading(true);
         return model.getAllSites()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(__ -> view.showLoading(true))
                 .retry(3)
                 .doOnEach(__ -> view.showLoading(false))
                 .subscribe(sites -> view.updateSitesList(sites), e -> {
