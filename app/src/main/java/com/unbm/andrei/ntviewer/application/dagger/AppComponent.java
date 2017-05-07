@@ -2,7 +2,7 @@ package com.unbm.andrei.ntviewer.application.dagger;
 
 import com.unbm.andrei.ntviewer.application.dagger.modules.ContextModule;
 import com.unbm.andrei.ntviewer.application.dagger.modules.NetworkModule;
-import com.unbm.andrei.ntviewer.application.network.SitesProviderService;
+import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Component;
 
@@ -13,5 +13,5 @@ import dagger.Component;
 @Component(modules = {ContextModule.class, NetworkModule.class})
 public interface AppComponent {
 
-    SitesProviderService sitesProviderService();
+    NTVService sitesProviderService();
 }

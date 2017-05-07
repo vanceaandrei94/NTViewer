@@ -4,8 +4,7 @@ import android.app.Activity;
 
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
 import com.unbm.andrei.ntviewer.activities.siteinfo.SiteInfoActivity;
-import com.unbm.andrei.ntviewer.application.network.SitesProviderService;
-import com.unbm.andrei.ntviewer.application.network.models.NetworkSite;
+import com.unbm.andrei.ntviewer.application.network.NTVService;
 import com.unbm.andrei.ntviewer.application.network.models.Site;
 
 import java.util.List;
@@ -18,16 +17,16 @@ import io.reactivex.Observable;
 
 public class MainModel {
 
-    private SitesProviderService sitesProviderService;
+    private NTVService NTVService;
     private Activity activity;
 
-    public MainModel(SitesProviderService sitesProviderService, MainActivity activity) {
-        this.sitesProviderService = sitesProviderService;
+    public MainModel(NTVService NTVService, MainActivity activity) {
+        this.NTVService = NTVService;
         this.activity = activity;
     }
 
     public Observable<List<Site>> getAllSites() {
-        return sitesProviderService.getAllNetworkSites();
+        return NTVService.getAllNetworkSites();
     }
 
     public void startSiteInfoActivity(Site site) {

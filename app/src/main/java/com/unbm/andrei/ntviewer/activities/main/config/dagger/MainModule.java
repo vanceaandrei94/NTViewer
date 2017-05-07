@@ -4,7 +4,7 @@ import com.unbm.andrei.ntviewer.activities.main.MainActivity;
 import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainModel;
 import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainPresenter;
 import com.unbm.andrei.ntviewer.activities.main.config.mvp.view.MainView;
-import com.unbm.andrei.ntviewer.application.network.SitesProviderService;
+import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Module;
 import dagger.Provides;
@@ -25,8 +25,8 @@ public class MainModule {
 
     @Provides
     @MainScope
-    public MainModel provideModel(SitesProviderService sitesProviderService) {
-        return new MainModel(sitesProviderService, activity);
+    public MainModel provideModel(NTVService NTVService) {
+        return new MainModel(NTVService, activity);
     }
 
     @Provides

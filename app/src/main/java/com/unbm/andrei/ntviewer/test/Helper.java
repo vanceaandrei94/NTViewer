@@ -244,4 +244,13 @@ public class Helper {
             "\t}\n" +
             "}\n" +
             "]";
+
+    public static final String LOGIN_SUCCEEDED_JSON =
+            "{" +
+            "\"User\": {" +
+            "   \"username\":\"test\"," +
+                    "\"isWorking\":\"true\"" +
+            "   }" +
+            "}";
+    public static final String INVALID_CREDENTIALS = "{\"message\":\"Invalid Credentials\"}";
 }

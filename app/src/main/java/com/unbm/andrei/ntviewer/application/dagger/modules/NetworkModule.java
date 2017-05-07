@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.unbm.andrei.ntviewer.application.dagger.AppScope;
 import com.unbm.andrei.ntviewer.application.network.FakeInterceptor;
-import com.unbm.andrei.ntviewer.application.network.SitesProviderService;
+import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import java.io.File;
 
@@ -65,13 +65,13 @@ public class NetworkModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
-                .baseUrl(SitesProviderService.BASE_URL)
+                .baseUrl(NTVService.BASE_URL)
                 .build();
     }
 
     @Provides
     @AppScope
-    public SitesProviderService providePostsService(Retrofit retrofit) {
-        return retrofit.create(SitesProviderService.class);
+    public NTVService providePostsService(Retrofit retrofit) {
+        return retrofit.create(NTVService.class);
     }
 }

@@ -1,6 +1,8 @@
 package com.unbm.andrei.ntviewer.application.network;
 
+import com.unbm.andrei.ntviewer.application.network.models.LoggedInUser;
 import com.unbm.andrei.ntviewer.application.network.models.Site;
+import com.unbm.andrei.ntviewer.models.User;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ import retrofit2.http.Query;
  * Created by Andrei on 4/30/2017.
  */
 
-public interface SitesProviderService {
+public interface NTVService {
 
     String BASE_URL = "http://provider-name.ro/services/ntviewer/";
 
@@ -44,4 +46,7 @@ public interface SitesProviderService {
     @GET("/sites")
     Observable<List<Site>> getSites(@Query("limit") int limit);
 
+
+    @GET("/users")
+    Observable<LoggedInUser> loginUser(@Query("username") String username, @Query("password") String password);
 }
