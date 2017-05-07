@@ -58,6 +58,7 @@ public class LoginPresenter implements BasePresenter {
     }
 
     private void startNextActivity(User user) {
+        model.cacheUser(user);
         model.startMainActivity(user);
     }
 

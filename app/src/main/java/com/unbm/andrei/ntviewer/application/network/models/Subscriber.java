@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Andrei on 4/30/2017.
  */
 
-public class Subscriber implements Parcelable{
+public class Subscriber implements Parcelable {
 
     @SerializedName("name")
     @Expose
@@ -28,28 +28,12 @@ public class Subscriber implements Parcelable{
     @Expose
     private String phoneNumber;
 
-    @SerializedName("ipAddress")
-    @Expose
-    private String publicIp;
-
-    @SerializedName("subnetwork")
-    @Expose
-    private Subnetwork subnetwork;
-
-    //those should appear there
-//    private double internetSpeed; // KB/s or Mb/s
-//    private int ping;
-//    private boolean hasProblem;
-//    private boolean active;
-
 
     protected Subscriber(Parcel in) {
         name = in.readString();
         address = in.readString();
         location = in.readParcelable(Coordinate.class.getClassLoader());
         phoneNumber = in.readString();
-        publicIp = in.readString();
-        subnetwork = in.readParcelable(Subnetwork.class.getClassLoader());
     }
 
     public static final Creator<Subscriber> CREATOR = new Creator<Subscriber>() {
@@ -96,22 +80,6 @@ public class Subscriber implements Parcelable{
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPublicIp() {
-        return publicIp;
-    }
-
-    public void setPublicIp(String publicIp) {
-        this.publicIp = publicIp;
-    }
-
-    public Subnetwork getSubnetwork() {
-        return subnetwork;
-    }
-
-    public void setSubnetwork(Subnetwork subnetwork) {
-        this.subnetwork = subnetwork;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -123,7 +91,5 @@ public class Subscriber implements Parcelable{
         dest.writeString(address);
         dest.writeParcelable(location, flags);
         dest.writeString(phoneNumber);
-        dest.writeString(publicIp);
-        dest.writeParcelable(subnetwork, flags);
     }
 }
