@@ -11,11 +11,12 @@ public class User implements Parcelable {
 
     private String username;
     private String password;
+    private int id;
     private boolean isWorking;
 
-    public User(String username, String password) {
+    public User(String username, int id) {
         this.username = username;
-        this.password = password;
+        this.id = id;
     }
 
     public User(String username, boolean isWorking) {
@@ -23,9 +24,16 @@ public class User implements Parcelable {
         this.isWorking = isWorking;
     }
 
+    public User(String username, String password, boolean isWorking) {
+        this.username = username;
+        this.password = password;
+        this.isWorking = isWorking;
+    }
+
     protected User(Parcel in) {
         username = in.readString();
         password = in.readString();
+        id = in.readInt();
         isWorking = in.readByte() != 0;
     }
 
@@ -40,12 +48,6 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
-
-    public User(String username, String password, boolean isWorking) {
-        this.username = username;
-        this.password = password;
-        this.isWorking = isWorking;
-    }
 
     public String getUsername() {
         return username;
@@ -71,6 +73,22 @@ public class User implements Parcelable {
         this.isWorking = isWorking;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isWorking() {
+        return isWorking;
+    }
+
+    public void setWorking(boolean working) {
+        isWorking = working;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -80,6 +98,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(username);
         dest.writeString(password);
+        dest.writeInt(id);
         dest.writeByte((byte) (isWorking ? 1 : 0));
     }
 }

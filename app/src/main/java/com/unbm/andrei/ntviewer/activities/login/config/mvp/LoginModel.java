@@ -21,12 +21,12 @@ public class LoginModel {
 
     public static final String ADMIN_USERNAME = "!admin";
     private static final String ADMIN_PASSWORD = "admin";
-    private static final String IS_WORKING_KEY = "isWorking";
 
     public static final String USER_LOGIN_PREFS = "userLogin";
     private static final String USERNAME_KEY = "username";
-    private static final String PASSWORD_KEY = "password";
+    private static final String USER_ID_KEY = "user_id";
     public static final String TRUE = "true";
+    public static final int ADMIN_USER_ID = -5;
     private final LoginActivity activity;
 
     private SharedPreferences preferences;
@@ -51,9 +51,16 @@ public class LoginModel {
     }
 
     public Observable<User> loginUser(String username, String password) {
+        User user = getCachedUser();
+        if (user != null) {
+            return Observable.create(e -> {
+                e.onNext(user);
+                e.onComplete();
+            });
+        }
         if (ADMIN_USERNAME.equals(username) && ADMIN_PASSWORD.equals(password)) {
             return Observable.create(e -> {
-                e.onNext(new User(username, password));
+                e.onNext(new User(username, ADMIN_USER_ID));
                 e.onComplete();
             });
         } else {
@@ -67,10 +74,9 @@ public class LoginModel {
 
     private User getCachedUser() {
         String username = preferences.getString(USERNAME_KEY, "");
-        String password = preferences.getString(PASSWORD_KEY, "");
-        String isWorking = preferences.getString(IS_WORKING_KEY, "");
+        int id = preferences.getInt(USER_ID_KEY, -1);
         if (!TextUtils.isEmpty(username)) {
-            return new User(username, password, TRUE.equals(isWorking));
+            return new User(username, id);
         }
 
         return null;
@@ -79,5 +85,12 @@ public class LoginModel {
 
     public void startMainActivity(User user) {
         MainActivity.start(activity, user);
+    }
+
+    public void cacheUser(User user) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(USERNAME_KEY, user.getUsername());
+        editor.putInt(USER_ID_KEY, user.getId());
+        editor.commit();
     }
 }

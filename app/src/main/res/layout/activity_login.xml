@@ -13,9 +13,7 @@
         android:paddingTop="56dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_gravity="center_horizontal"
+            style="@style/LogoImage"
             android:layout_marginBottom="24dp"
             android:src="@drawable/nt_viewer_logo" />
 

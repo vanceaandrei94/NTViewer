@@ -9,8 +9,34 @@
     tools:context="com.unbm.andrei.ntviewer.activities.main.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ListView
-        android:id="@+id/sites_list"
-        style="@style/BaseListView"
-        />
+    <ImageView
+        android:id="@+id/imageView"
+        style="@style/LogoImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="89dp" />
+
+    <LinearLayout
+        style="@style/NavigationButtonsContainer"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="87dp">
+
+        <Button
+            android:id="@+id/profile_btn"
+            style="@style/NavigationButton"
+            android:text="Profile" />
+
+        <Button
+            android:id="@+id/requests_btn"
+
+            style="@style/NavigationButton"
+            android:text="Requests" />
+
+        <Button
+            android:id="@+id/complaints_btn"
+            style="@style/NavigationButton"
+            android:text="Complaints" />
+
+    </LinearLayout>
 </RelativeLayout>

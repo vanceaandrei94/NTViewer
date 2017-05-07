@@ -3,7 +3,7 @@ package com.unbm.andrei.ntviewer.activities.main.config.dagger;
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
 import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainModel;
 import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainPresenter;
-import com.unbm.andrei.ntviewer.activities.main.config.mvp.view.MainView;
+import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainView;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Module;
