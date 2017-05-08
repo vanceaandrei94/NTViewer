@@ -5,8 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
-import com.unbm.andrei.ntviewer.activities.siteinfo.SiteInfoActivity;
+import com.unbm.andrei.ntviewer.activities.sitesmap.SitesMapActivity;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
+import com.unbm.andrei.ntviewer.application.network.models.Complaint;
 import com.unbm.andrei.ntviewer.application.network.models.SRequest;
 import com.unbm.andrei.ntviewer.application.network.models.Site;
 import com.unbm.andrei.ntviewer.models.User;
@@ -14,6 +15,7 @@ import com.unbm.andrei.ntviewer.models.User;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Andrei on 4/30/2017.
@@ -36,17 +38,19 @@ public class MainModel {
     }
 
     public void startViewProfileActivity(User user) {
-        // start profile activity
+        // TODO: 5/8/2017 make ProfileActivity and start it from here
     }
 
     public void startViewRequestsActivity(List<SRequest> sRequests) {
+        // TODO: 5/8/2017 make SubscribeRequestsActivity and start it from here
     }
 
-    public void startViewComplaintsActivity() {
+    public void startViewComplaintsActivity(List<Complaint> complaints) {
+        // TODO: 5/8/2017 make ComplaintsActivity and start it from here
     }
 
-    public User getLoggedInUserInfo() {
-        return null;
+    public void startSitesMapActivity(List<Site> sites) {
+        SitesMapActivity.start(activity, sites);
     }
 
     public Observable<User> getCurrentUserInfo() {
@@ -54,9 +58,16 @@ public class MainModel {
         return service.getUser(userId);
     }
 
+
     public Observable<List<SRequest>> getSubscribeRequests() {
         return service.getSRequests();
     }
 
+    public Observable<List<Site>> getAllSites() {
+        return service.getAllSites();
+    }
 
+    public Observable<List<Complaint>> getComplaints() {
+        return service.getComplaints();
+    }
 }

@@ -14,6 +14,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Andrei on 4/30/2017.
  */
 
+@SuppressWarnings("Convert2MethodRef")
 public class MainPresenter implements BasePresenter {
 
     private final MainView view;
@@ -27,38 +28,43 @@ public class MainPresenter implements BasePresenter {
     }
 
     public void onCreate() {
-        //add disposables to the composite
-        //such as onClickObservables and others
+
     }
 
     public void startViewProfileActivity() {
         view.showLoading(true);
-        model.getCurrentUserInfo()
+        compositeDisposable.add(model.getCurrentUserInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEach(__ -> view.showLoading(false))
-                .subscribe(user -> startProfileActivity(user));
+                .subscribe(user -> model.startViewProfileActivity(user)));
     }
 
     public void startViewRequestsActivity() {
         view.showLoading(true);
-        model.getSubscribeRequests()
+        compositeDisposable.add(model.getSubscribeRequests()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEach(__ -> view.showLoading(false))
-                .subscribe(sRequests -> startRequestsActivity(sRequests));
+                .subscribe(sRequests -> model.startViewRequestsActivity(sRequests)));
+    }
+
+    public void startSitesMapActivity() {
+        view.showLoading(true);
+        compositeDisposable.add(model.getAllSites()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnEach(__ -> view.showLoading(false))
+                .subscribe(sites -> model.startSitesMapActivity(sites)));
     }
 
     public void startViewComplaintsActivity() {
-        model.startViewComplaintsActivity();
-    }
-
-    private void startProfileActivity(User user) {
-        model.startViewProfileActivity(user);
-    }
-
-    private void startRequestsActivity(List<SRequest> sRequests) {
-        model.startViewRequestsActivity(sRequests);
+        view.showLoading(true);
+        compositeDisposable.add(model.getComplaints()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnEach(__ -> view.showLoading(false))
+                .subscribe(complaints -> model.startViewComplaintsActivity(complaints)));
     }
 
     public void onDestroy() {

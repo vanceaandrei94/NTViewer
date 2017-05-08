@@ -1,5 +1,6 @@
 package com.unbm.andrei.ntviewer.application.network;
 
+import com.unbm.andrei.ntviewer.application.network.models.Complaint;
 import com.unbm.andrei.ntviewer.application.network.models.LoggedInUser;
 import com.unbm.andrei.ntviewer.application.network.models.SRequest;
 import com.unbm.andrei.ntviewer.application.network.models.Site;
@@ -25,7 +26,7 @@ public interface NTVService {
      * @return List&lt;{@link com.unbm.andrei.ntviewer.application.network.models.Site}&gt;
      */
     @GET("/allSites")
-    Observable<List<Site>> getAllNetworkSites();
+    Observable<List<Site>> getAllSites();
 
     /**
      * By providing your current location this method will return the closest site
@@ -54,7 +55,9 @@ public interface NTVService {
     @GET("users/getUser")
     Observable<User> getUser(@Query("userId") int userId);
 
-    @GET("/subscribes/requests")
+    @GET("/subscribers/requests")
     Observable<List<SRequest>> getSRequests();
 
+    @GET("/subscribers/complaints")
+    Observable<List<Complaint>> getComplaints();
 }
