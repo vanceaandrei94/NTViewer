@@ -34,4 +34,7 @@
     <string name="site_info_nodes">Nodes:</string>
     <string name="all_sites">All sites</string>
     <string name="sign_in">Sign in</string>
+    <string name="btn_area_coverage">Acoperire</string>
+    <string name="btn_contracts">Contracte</string>
+    <string name="btn_complaints">Deranjamente</string>
 </resources>

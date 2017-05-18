@@ -2,22 +2,12 @@ package com.unbm.andrei.ntviewer.activities.main.config.mvp;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
-import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainPresenter;
-import com.unbm.andrei.ntviewer.application.network.models.Site;
-import com.unbm.andrei.ntviewer.models.User;
 
-import java.util.List;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -46,10 +36,9 @@ public class MainView extends FrameLayout {
         }
     }
 
-    @OnClick(R.id.profile_btn)
+    @OnClick(R.id.area_coverage_btn)
     public void startViewProfileActivity() {
-//        presenter.startViewProfileActivity();
-        showToast("Profile btn clicked.");
+        presenter.startViewCoverageActivity();
     }
 
     @OnClick(R.id.requests_btn)

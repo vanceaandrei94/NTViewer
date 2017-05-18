@@ -48,6 +48,7 @@ public class SiteInfoActivity extends AppCompatActivity {
 
         setContentView(view);
         presenter.onCreate();
+        getSupportActionBar().setTitle("NTViewer");
     }
 
     @Override

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#673AB7</color>
-    <color name="colorPrimaryDark">#4527A0</color>
-    <color name="colorAccent">#7C4DFF</color>
+    <color name="colorPrimary">#0337e5</color>
+    <color name="colorPrimaryDark">#000eb1</color>
+    <color name="colorAccent">#6863ff</color>
 
     <color name="color_badge_good">#00FF00</color>
     <color name="color_badge_bad">#FF0000</color>
