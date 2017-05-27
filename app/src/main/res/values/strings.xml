@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NTViewer</string>
+    <string name="app_name">ISP Analyser</string>
     <string name="action_settings">Settings</string>
 
     <string name="nav_user_info">User Info</string>
