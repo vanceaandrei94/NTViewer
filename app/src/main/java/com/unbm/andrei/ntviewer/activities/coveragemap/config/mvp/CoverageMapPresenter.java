@@ -1,11 +1,11 @@
 package com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp;
 
-import android.graphics.Color;
-
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.unbm.andrei.ntviewer.activities.common.mvp.BasePresenter;
+import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by andrei.vancea on 5/8/2017.
@@ -13,10 +13,10 @@ import com.unbm.andrei.ntviewer.activities.common.mvp.BasePresenter;
 
 public class CoverageMapPresenter implements BasePresenter {
 
-    private CoverageMapView view;
+    private final ICoverageMapView view;
     private CoverageMapModel model;
 
-    public CoverageMapPresenter(CoverageMapView view, CoverageMapModel model) {
+    public CoverageMapPresenter(ICoverageMapView view, CoverageMapModel model) {
         this.view = view;
         this.model = model;
     }
@@ -29,10 +29,5 @@ public class CoverageMapPresenter implements BasePresenter {
     @Override
     public void onDestroy() {
 
-    }
-
-    public void addSiteOverlay() {
-        PolygonOptions coverage = model.getCoverage();
-        view.buildOverlay(coverage);
     }
 }

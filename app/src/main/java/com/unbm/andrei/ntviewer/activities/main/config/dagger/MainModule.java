@@ -3,7 +3,6 @@ package com.unbm.andrei.ntviewer.activities.main.config.dagger;
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
 import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainModel;
 import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainPresenter;
-import com.unbm.andrei.ntviewer.activities.main.config.mvp.MainView;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Module;
@@ -31,13 +30,7 @@ public class MainModule {
 
     @Provides
     @MainScope
-    public MainView provideView() {
-        return new MainView(activity);
-    }
-
-    @Provides
-    @MainScope
-    public MainPresenter providePresenter(MainView view, MainModel model) {
-        return new MainPresenter(view, model);
+    public MainPresenter providePresenter(MainModel model) {
+        return new MainPresenter(activity, model);
     }
 }

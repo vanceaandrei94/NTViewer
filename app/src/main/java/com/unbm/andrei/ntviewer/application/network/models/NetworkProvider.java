@@ -9,23 +9,23 @@ import java.util.List;
  * Created by andrei.vancea on 5/18/2017.
  */
 
-public class NetworkProviders implements Parcelable{
+public class NetworkProvider implements Parcelable{
 
     private List<EdgePoint> coverageEdges;
 
-    protected NetworkProviders(Parcel in) {
+    protected NetworkProvider(Parcel in) {
         coverageEdges = in.createTypedArrayList(EdgePoint.CREATOR);
     }
 
-    public static final Creator<NetworkProviders> CREATOR = new Creator<NetworkProviders>() {
+    public static final Creator<NetworkProvider> CREATOR = new Creator<NetworkProvider>() {
         @Override
-        public NetworkProviders createFromParcel(Parcel in) {
-            return new NetworkProviders(in);
+        public NetworkProvider createFromParcel(Parcel in) {
+            return new NetworkProvider(in);
         }
 
         @Override
-        public NetworkProviders[] newArray(int size) {
-            return new NetworkProviders[size];
+        public NetworkProvider[] newArray(int size) {
+            return new NetworkProvider[size];
         }
     };
 

@@ -6,7 +6,7 @@ import android.graphics.Color;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
-import com.unbm.andrei.ntviewer.application.network.models.NetworkProviders;
+import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class CoverageMapModel {
         this.service = service;
     }
 
-    public Observable<List<NetworkProviders>> getNetworkProviders() {
+    public Observable<List<NetworkProvider>> getNetworkProviders() {
         return service.getProviders();
     }
 

@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
 import com.unbm.andrei.ntviewer.activities.coveragemap.CoverageMapActivity;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
-import com.unbm.andrei.ntviewer.application.network.models.NetworkProviders;
+import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +34,11 @@ public class MainModel {
 
     }
 
-    public void startMapCoverageActivity(List<NetworkProviders> providers) {
+    public void startMapCoverageActivity(List<NetworkProvider> providers) {
         CoverageMapActivity.start(activity, providers);
     }
 
-    public Observable<List<NetworkProviders>> getMapCoverage() {
+    public Observable<List<NetworkProvider>> getMapCoverage() {
         return service.getProviders();
     }
 

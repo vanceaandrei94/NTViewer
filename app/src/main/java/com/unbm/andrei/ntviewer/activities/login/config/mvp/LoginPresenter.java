@@ -14,12 +14,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginPresenter implements BasePresenter {
 
-    private final LoginView view;
+    private final ILoginView view;
     private final LoginModel model;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public LoginPresenter(LoginView view, LoginModel model) {
+    public LoginPresenter(ILoginView view, LoginModel model) {
         this.view = view;
         this.model = model;
     }
@@ -32,6 +32,10 @@ public class LoginPresenter implements BasePresenter {
     @Override
     public void onDestroy() {
         compositeDisposable.dispose();
+    }
+
+    public void signInUser(String username, String password){
+        // TODO: 6/3/2017 implement this
     }
 
     public void loginUser(String username, String password) {

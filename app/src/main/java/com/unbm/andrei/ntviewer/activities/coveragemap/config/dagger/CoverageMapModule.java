@@ -3,7 +3,7 @@ package com.unbm.andrei.ntviewer.activities.coveragemap.config.dagger;
 import com.unbm.andrei.ntviewer.activities.coveragemap.CoverageMapActivity;
 import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.CoverageMapModel;
 import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.CoverageMapPresenter;
-import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.CoverageMapView;
+import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.ICoverageMapView;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Module;
@@ -30,13 +30,8 @@ public class CoverageMapModule {
 
     @Provides
     @CoverageMapScope
-    public CoverageMapPresenter providePresenter(CoverageMapView view, CoverageMapModel model) {
-        return new CoverageMapPresenter(view, model);
+    public CoverageMapPresenter providePresenter(CoverageMapModel model) {
+        return new CoverageMapPresenter(activity, model);
     }
 
-    @Provides
-    @CoverageMapScope
-    public CoverageMapView provideView() {
-        return new CoverageMapView(activity);
-    }
 }

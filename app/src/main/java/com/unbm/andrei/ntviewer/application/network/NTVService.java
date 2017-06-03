@@ -2,9 +2,8 @@ package com.unbm.andrei.ntviewer.application.network;
 
 import com.unbm.andrei.ntviewer.application.network.models.Complaint;
 import com.unbm.andrei.ntviewer.application.network.models.LoggedInUser;
-import com.unbm.andrei.ntviewer.application.network.models.NetworkProviders;
+import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 import com.unbm.andrei.ntviewer.application.network.models.SRequest;
-import com.unbm.andrei.ntviewer.application.network.models.Site;
 import com.unbm.andrei.ntviewer.models.User;
 
 import java.util.List;
@@ -35,5 +34,5 @@ public interface NTVService {
 
 
     @GET("/coverage/providers")
-    Observable<List<NetworkProviders>> getProviders();
+    Observable<List<NetworkProvider>> getProviders();
 }
