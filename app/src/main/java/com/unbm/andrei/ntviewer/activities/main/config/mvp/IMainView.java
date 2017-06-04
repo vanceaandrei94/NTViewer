@@ -5,4 +5,6 @@ package com.unbm.andrei.ntviewer.activities.main.config.mvp;
  */
 
 public interface IMainView {
+
+    void showLoading(boolean show);
 }

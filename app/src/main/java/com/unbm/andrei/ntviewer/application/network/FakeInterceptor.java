@@ -17,6 +17,8 @@ import okhttp3.ResponseBody;
 public class FakeInterceptor implements Interceptor {
     private static final String ALL_SITES = "allSites";
     private static final String USERS = "users";
+    private static final String COVERAGE_PROVIDERS = "coverage/providers";
+
     private static final String TEST_USERNAME = "test";
     private static final String TEST_PASS = "pass";
 
@@ -66,6 +68,17 @@ public class FakeInterceptor implements Interceptor {
                             .addHeader("content-type", "application/json")
                             .build();
                 }
+                break;
+            case COVERAGE_PROVIDERS:
+                responseString = Helper.GET_PROVIDERS_COVERAGE_JSON;
+                response = new Response.Builder()
+                        .code(200)
+                        .message(responseString)
+                        .request(chain.request())
+                        .protocol(Protocol.HTTP_1_1)
+                        .body(ResponseBody.create(MediaType.parse("application/json"), responseString.getBytes()))
+                        .addHeader("content-type", "application/json")
+                        .build();
         }
 
         return response == null ? chain.proceed(chain.request()) : response;

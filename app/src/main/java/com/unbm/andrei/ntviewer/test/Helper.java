@@ -253,4 +253,5 @@ public class Helper {
             "   }" +
             "}";
     public static final String INVALID_CREDENTIALS = "{\"message\":\"Invalid Credentials\"}";
+    public static final String GET_PROVIDERS_COVERAGE_JSON = "";
 }

@@ -1,6 +1,7 @@
 package com.unbm.andrei.ntviewer.activities.login;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @BindView(R.id.input_password)
     EditText passwordEt;
 
-    private final ProgressDialog progressDialog = new ProgressDialog(this);
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 .build()
                 .inject(this);
         ButterKnife.bind(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Signing in...");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -53,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     @OnClick(R.id.btn_sign_in)
-    public void signInButtonClick(){
+    public void signInButtonClick() {
         String username = usernameEt.getText().toString();
         String password = passwordEt.getText().toString();
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
@@ -81,5 +83,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }

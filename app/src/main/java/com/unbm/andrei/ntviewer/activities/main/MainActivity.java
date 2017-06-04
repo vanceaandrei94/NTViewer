@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Inject
     MainPresenter presenter;
 
-    private final ProgressDialog progressDialog = new ProgressDialog(this);
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Preparing Data...");
         presenter.onCreate();
         getSupportActionBar().setTitle("NTViewer");
@@ -77,4 +78,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showLoading(boolean show) {
+        if (show) {
+            progressDialog.show();
+        } else {
+            progressDialog.dismiss();
+        }
+    }
 }
