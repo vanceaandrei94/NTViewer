@@ -253,5 +253,88 @@ public class Helper {
             "   }" +
             "}";
     public static final String INVALID_CREDENTIALS = "{\"message\":\"Invalid Credentials\"}";
-    public static final String GET_PROVIDERS_COVERAGE_JSON = "";
+    public static final String GET_PROVIDERS_COVERAGE_JSON = "[\n" +
+            "  {\n" +
+            "\t\"name\": \"DIGI\",\n" +
+            "\t\"color\": \"RED\",\n" +
+            "\t\"subscribers\": [{\n" +
+            "\t\t\t\"lat\": 47.661506,\n" +
+            "\t\t\t\"lon\": 23.574064\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.661362,\n" +
+            "\t\t\t\"lon\": 23.547885\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.660148,\n" +
+            "\t\t\t\"lon\": 23.546641\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.660784,\n" +
+            "\t\t\t\"lon\": 23.551576\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.661795,\n" +
+            "\t\t\t\"lon\": 23.574064\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.656274,\n" +
+            "\t\t\t\"lon\": 23.572476\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.654808,\n" +
+            "\t\t\t\"lon\": 23.567004\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.653413,\n" +
+            "\t\t\t\"lon\": 23.551662\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 47.653384,\n" +
+            "\t\t\t\"lon\": 23.561490\n" +
+            "\t\t}\n" +
+            "\t]\n" +
+            "},\n" +
+            "{\n" +
+            "\t\"name\": \"TELEKOM\",\n" +
+            "\t\"color\": \"BLUE\",\n" +
+            "\t\"subscribers\": [{\n" +
+            "\t\t\t\"lat\": 46.661506,\n" +
+            "\t\t\t\"lon\": 23.574064\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.661362,\n" +
+            "\t\t\t\"lon\": 23.547885\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.660148,\n" +
+            "\t\t\t\"lon\": 23.546641\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.660784,\n" +
+            "\t\t\t\"lon\": 23.551576\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.661795,\n" +
+            "\t\t\t\"lon\": 23.574064\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.656274,\n" +
+            "\t\t\t\"lon\": 23.572476\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.654808,\n" +
+            "\t\t\t\"lon\": 23.567004\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.653413,\n" +
+            "\t\t\t\"lon\": 23.551662\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"lat\": 46.653384,\n" +
+            "\t\t\t\"lon\": 23.561490\n" +
+            "\t\t}\n" +
+            "\t]\n" +
+            "}\n" +
+            "]";
 }

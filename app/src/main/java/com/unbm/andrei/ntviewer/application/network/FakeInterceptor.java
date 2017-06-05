@@ -15,9 +15,9 @@ import okhttp3.ResponseBody;
  */
 
 public class FakeInterceptor implements Interceptor {
-    private static final String ALL_SITES = "allSites";
-    private static final String USERS = "users";
-    private static final String COVERAGE_PROVIDERS = "coverage/providers";
+    private static final String ALL_SITES = "/allSites";
+    private static final String USERS = "/users";
+    private static final String COVERAGE_PROVIDERS = "/coverage/providers";
 
     private static final String TEST_USERNAME = "test";
     private static final String TEST_PASS = "pass";
@@ -31,7 +31,7 @@ public class FakeInterceptor implements Interceptor {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        switch (chain.request().url().pathSegments().get(0).toString()) {
+        switch (chain.request().url().encodedPath()) {
             case ALL_SITES:
                 responseString = Helper.GET_ALL_SITES_JSON;
                 response = new Response.Builder()

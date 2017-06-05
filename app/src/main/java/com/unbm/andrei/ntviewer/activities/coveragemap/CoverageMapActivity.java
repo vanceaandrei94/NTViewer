@@ -3,13 +3,15 @@ package com.unbm.andrei.ntviewer.activities.coveragemap;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.activities.coveragemap.config.dagger.CoverageMapModule;
@@ -18,19 +20,17 @@ import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.CoverageMapPre
 import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.ICoverageMapView;
 import com.unbm.andrei.ntviewer.application.NTViewerApplication;
 import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
+import com.unbm.andrei.ntviewer.application.network.models.Subscriber;
+import com.unbm.andrei.ntviewer.util.ColorUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class CoverageMapActivity extends AppCompatActivity implements ICoverageMapView, OnMapReadyCallback {
 
-    public static final String PROVIDERS_LIST = "PROVIDERS_LIST";
-
-    public static void start(Context context, List<NetworkProvider> providers) {
+    public static void start(Context context) {
         Intent intent = new Intent(context, CoverageMapActivity.class);
-        intent.putParcelableArrayListExtra(PROVIDERS_LIST, new ArrayList<>(providers));
         context.startActivity(intent);
     }
 
@@ -73,6 +73,19 @@ public class CoverageMapActivity extends AppCompatActivity implements ICoverageM
     private void addMapFeaturesIfGranted(Boolean granted) {
         if (granted) {
             map.setMyLocationEnabled(true);
+        }
+    }
+
+    @Override
+    public void drawCoverage(List<NetworkProvider> providers) {
+        for (NetworkProvider provider : providers) {
+            for (Subscriber subscriber : provider.getSubscribers()) {
+                map.addCircle(new CircleOptions()
+                        .center(new LatLng(subscriber.getLat(), subscriber.getLon()))
+                        .fillColor(ColorUtil.getColorFromString(provider.getColor(), 70))
+                        .strokeWidth(0)
+                        .radius(25));
+            }
         }
     }
 }

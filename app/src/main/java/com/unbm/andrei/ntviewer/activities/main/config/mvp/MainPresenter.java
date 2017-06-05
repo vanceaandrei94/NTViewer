@@ -30,14 +30,7 @@ public class MainPresenter implements BasePresenter {
     }
 
     public void startViewCoverageActivity() {
-        view.showLoading(true);
-        compositeDisposable.add(model.getMapCoverage()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnEach(__ -> view.showLoading(false))
-                .subscribe(networkProviders -> model.startMapCoverageActivity(networkProviders), ex -> Log.e("BASIC", "Error loading providers coverage: " + ex.getMessage()))
-        );
-        model.startViewMapActivity();
+        model.startMapCoverageActivity();
     }
 
     public void onDestroy() {

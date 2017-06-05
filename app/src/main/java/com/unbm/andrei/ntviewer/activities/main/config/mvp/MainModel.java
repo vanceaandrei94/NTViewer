@@ -34,15 +34,9 @@ public class MainModel {
 
     }
 
-    public void startMapCoverageActivity(List<NetworkProvider> providers) {
-        CoverageMapActivity.start(activity, providers);
+    public void startMapCoverageActivity() {
+        CoverageMapActivity.start(activity);
     }
 
-    public Observable<List<NetworkProvider>> getMapCoverage() {
-        return service.getProviders();
-    }
 
-    public void startViewMapActivity() {
-        CoverageMapActivity.start(activity, new ArrayList<>());
-    }
 }

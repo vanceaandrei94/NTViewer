@@ -6,34 +6,18 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Andrei on 4/30/2017.
- */
+public class Subscriber implements Parcelable{
 
-public class Subscriber implements Parcelable {
-
-    @SerializedName("name")
+    @SerializedName("lat")
     @Expose
-    private String name;
-
-    @SerializedName("home_addr")
+    private double lat;
+    @SerializedName("lon")
     @Expose
-    private String address;
-
-    @SerializedName("location")
-    @Expose
-    private Coordinate location;
-
-    @SerializedName("phone")
-    @Expose
-    private String phoneNumber;
-
+    private double lon;
 
     protected Subscriber(Parcel in) {
-        name = in.readString();
-        address = in.readString();
-        location = in.readParcelable(Coordinate.class.getClassLoader());
-        phoneNumber = in.readString();
+        lat = in.readDouble();
+        lon = in.readDouble();
     }
 
     public static final Creator<Subscriber> CREATOR = new Creator<Subscriber>() {
@@ -48,36 +32,20 @@ public class Subscriber implements Parcelable {
         }
     };
 
-    public String getName() {
-        return name;
+    public double getLat() {
+        return lat;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
-    public String getAddress() {
-        return address;
+    public double getLon() {
+        return lon;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Coordinate getLocation() {
-        return location;
-    }
-
-    public void setLocation(Coordinate location) {
-        this.location = location;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 
     @Override
@@ -87,9 +55,7 @@ public class Subscriber implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(address);
-        dest.writeParcelable(location, flags);
-        dest.writeString(phoneNumber);
+        dest.writeDouble(lat);
+        dest.writeDouble(lon);
     }
 }
