@@ -38,16 +38,11 @@ public class LoginModel {
         preferences = activity.getSharedPreferences(USER_LOGIN_PREFS, Context.MODE_PRIVATE);
     }
 
-    public Observable<User> preLoginUser() {
-        return Observable.create(e -> {
-            User user = getCachedUser();
-            if (user == null) {
-                e.onError(new Throwable("no cached user"));
-            } else {
-                e.onNext(user);
-            }
-            e.onComplete();
-        });
+    public void preLoginUser() {
+        User user = getCachedUser();
+        if (user != null) {
+            startMainActivity(user);
+        }
     }
 
     public Observable<User> loginUser(String username, String password) {
@@ -84,10 +79,12 @@ public class LoginModel {
 
 
     public void startMainActivity(User user) {
+        cacheUser(user);
         MainActivity.start(activity, user);
+        activity.finish();
     }
 
-    public void cacheUser(User user) {
+    private void cacheUser(User user) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(USERNAME_KEY, user.getUsername());
         editor.putInt(USER_ID_KEY, user.getId());

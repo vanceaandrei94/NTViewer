@@ -1,11 +1,9 @@
 package com.unbm.andrei.ntviewer.activities.login.config.mvp;
 
 import com.unbm.andrei.ntviewer.activities.common.mvp.BasePresenter;
-import com.unbm.andrei.ntviewer.models.User;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -14,19 +12,19 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginPresenter implements BasePresenter {
 
-    private final LoginView view;
+    private final ILoginView view;
     private final LoginModel model;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public LoginPresenter(LoginView view, LoginModel model) {
+    public LoginPresenter(ILoginView view, LoginModel model) {
         this.view = view;
         this.model = model;
     }
 
     @Override
     public void onCreate() {
-        compositeDisposable.add(preLoginUser());
+        preLoginUser();
     }
 
     @Override
@@ -34,14 +32,14 @@ public class LoginPresenter implements BasePresenter {
         compositeDisposable.dispose();
     }
 
-    public void loginUser(String username, String password) {
-        view.showLoading(true);
-        Disposable loginDisposable = model.loginUser(username, password)
+    public void signInUser(String username, String password){
+       view.showLoading(true);
+        compositeDisposable.add(model.loginUser(username, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEach(__ -> view.showLoading(false))
-                .subscribe(user -> startNextActivity(user), t -> userLoginFailed(t));
-        compositeDisposable.add(loginDisposable);
+                .subscribe(user -> model.startMainActivity(user), ex -> userLoginFailed(ex))
+        );
     }
 
     private void userLoginFailed(Throwable throwable) {
@@ -49,17 +47,8 @@ public class LoginPresenter implements BasePresenter {
         view.showToast(message);
     }
 
-    public Disposable preLoginUser() {
-        return model.preLoginUser()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(user -> startNextActivity(user), __ -> {
-                });
-    }
-
-    private void startNextActivity(User user) {
-        model.cacheUser(user);
-        model.startMainActivity(user);
+    public void preLoginUser() {
+        model.preLoginUser();
     }
 
 }

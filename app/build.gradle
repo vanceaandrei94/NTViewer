@@ -45,6 +45,7 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.0.8'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
 
     //client
     compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
@@ -55,6 +56,9 @@ dependencies {
     //ButterKnife
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+    //Google services
+    compile 'com.google.android.gms:play-services-maps:10.2.4'
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

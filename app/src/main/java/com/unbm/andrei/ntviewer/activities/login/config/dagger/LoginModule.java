@@ -1,9 +1,9 @@
 package com.unbm.andrei.ntviewer.activities.login.config.dagger;
 
 import com.unbm.andrei.ntviewer.activities.login.LoginActivity;
+import com.unbm.andrei.ntviewer.activities.login.config.mvp.ILoginView;
 import com.unbm.andrei.ntviewer.activities.login.config.mvp.LoginModel;
 import com.unbm.andrei.ntviewer.activities.login.config.mvp.LoginPresenter;
-import com.unbm.andrei.ntviewer.activities.login.config.mvp.LoginView;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Module;
@@ -30,13 +30,8 @@ public class LoginModule {
 
     @Provides
     @LoginScope
-    public LoginPresenter providePresenter(LoginView view, LoginModel model) {
-        return new LoginPresenter(view, model);
+    public LoginPresenter providePresenter(LoginModel model) {
+        return new LoginPresenter(activity, model);
     }
 
-    @Provides
-    @LoginScope
-    public LoginView provideView() {
-        return new LoginView(activity);
-    }
 }

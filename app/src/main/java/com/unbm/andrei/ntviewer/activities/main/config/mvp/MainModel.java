@@ -5,12 +5,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.unbm.andrei.ntviewer.activities.main.MainActivity;
-import com.unbm.andrei.ntviewer.activities.siteinfo.SiteInfoActivity;
+import com.unbm.andrei.ntviewer.activities.coveragemap.CoverageMapActivity;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
-import com.unbm.andrei.ntviewer.application.network.models.SRequest;
-import com.unbm.andrei.ntviewer.application.network.models.Site;
-import com.unbm.andrei.ntviewer.models.User;
+import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -35,27 +34,8 @@ public class MainModel {
 
     }
 
-    public void startViewProfileActivity(User user) {
-        // start profile activity
-    }
-
-    public void startViewRequestsActivity(List<SRequest> sRequests) {
-    }
-
-    public void startViewComplaintsActivity() {
-    }
-
-    public User getLoggedInUserInfo() {
-        return null;
-    }
-
-    public Observable<User> getCurrentUserInfo() {
-        int userId = preferences.getInt(USER_ID_KEY, -1);
-        return service.getUser(userId);
-    }
-
-    public Observable<List<SRequest>> getSubscribeRequests() {
-        return service.getSRequests();
+    public void startMapCoverageActivity() {
+        CoverageMapActivity.start(activity);
     }
 
 

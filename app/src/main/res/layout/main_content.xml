@@ -23,20 +23,19 @@
         android:layout_marginTop="87dp">
 
         <Button
-            android:id="@+id/profile_btn"
+            android:id="@+id/area_coverage_btn"
             style="@style/NavigationButton"
-            android:text="Profile" />
+            android:text="@string/btn_area_coverage" />
 
         <Button
             android:id="@+id/requests_btn"
-
             style="@style/NavigationButton"
-            android:text="Requests" />
+            android:text="@string/btn_contracts" />
 
         <Button
             android:id="@+id/complaints_btn"
             style="@style/NavigationButton"
-            android:text="Complaints" />
+            android:text="@string/btn_complaints" />
 
     </LinearLayout>
 </RelativeLayout>
