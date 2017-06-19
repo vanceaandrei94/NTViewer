@@ -28,14 +28,14 @@
             android:text="@string/btn_area_coverage" />
 
         <Button
-            android:id="@+id/requests_btn"
-            style="@style/NavigationButton"
-            android:text="@string/btn_contracts" />
-
-        <Button
             android:id="@+id/complaints_btn"
             style="@style/NavigationButton"
             android:text="@string/btn_complaints" />
+
+        <Button
+            android:id="@+id/possible_clients_btn"
+            style="@style/NavigationButton"
+            android:text="@string/btn_possible_clients" />
 
     </LinearLayout>
 </RelativeLayout>

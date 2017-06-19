@@ -1,4 +1,4 @@
-package com.unbm.andrei.ntviewer.activities.coveragemap.config.dagger;
+package com.unbm.andrei.ntviewer.activities.map.coverage.config.dagger;
 
 import javax.inject.Scope;
 

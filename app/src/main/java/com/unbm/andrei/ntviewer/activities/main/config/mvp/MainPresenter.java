@@ -36,4 +36,8 @@ public class MainPresenter implements BasePresenter {
     public void onDestroy() {
         compositeDisposable.dispose();
     }
+
+    public void startViewComplaintsActivity() {
+        model.startComplaintsActivity();
+    }
 }

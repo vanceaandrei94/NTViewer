@@ -1,9 +1,8 @@
-package com.unbm.andrei.ntviewer.activities.coveragemap.config.dagger;
+package com.unbm.andrei.ntviewer.activities.map.coverage.config.dagger;
 
-import com.unbm.andrei.ntviewer.activities.coveragemap.CoverageMapActivity;
-import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.CoverageMapModel;
-import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.CoverageMapPresenter;
-import com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp.ICoverageMapView;
+import com.unbm.andrei.ntviewer.activities.map.coverage.CoverageMapActivity;
+import com.unbm.andrei.ntviewer.activities.map.coverage.config.mvp.CoverageMapModel;
+import com.unbm.andrei.ntviewer.activities.map.coverage.config.mvp.CoverageMapPresenter;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Module;

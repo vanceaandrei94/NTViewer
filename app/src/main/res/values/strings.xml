@@ -35,6 +35,6 @@
     <string name="all_sites">All sites</string>
     <string name="sign_in">Sign in</string>
     <string name="btn_area_coverage">Acoperire</string>
-    <string name="btn_contracts">Contracte</string>
+    <string name="btn_possible_clients">Posibili clienti</string>
     <string name="btn_complaints">Deranjamente</string>
 </resources>

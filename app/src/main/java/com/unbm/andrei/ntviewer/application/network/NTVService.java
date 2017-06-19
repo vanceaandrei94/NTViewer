@@ -1,5 +1,6 @@
 package com.unbm.andrei.ntviewer.application.network;
 
+import com.unbm.andrei.ntviewer.application.network.models.Complaint;
 import com.unbm.andrei.ntviewer.application.network.models.LoggedInUser;
 import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 import com.unbm.andrei.ntviewer.models.User;
@@ -16,14 +17,14 @@ import retrofit2.http.Query;
 
 public interface NTVService {
 
-    String BASE_URL = "http://provider-name.ro/services/ntviewer/";
+    String BASE_URL = "http://provider-name.ro/services/ispAnalyser/";
 
     @GET("/users")
     Observable<LoggedInUser> loginUser(@Query("username") String username, @Query("password") String password);
 
-    @GET("users/getUser")
-    Observable<User> getUser(@Query("userId") int userId);
-
     @GET("/coverage/providers")
     Observable<List<NetworkProvider>> getProviders();
+
+    @GET("/coverage/complaints")
+    Observable<List<Complaint>> getComplaints();
 }
