@@ -40,9 +40,6 @@ public class ComplaintsMapActivity extends MapActivity implements IComplaintsMap
                 .complaintsMapModule(new ComplaintsMapModule(this))
                 .build().inject(this);
 
-        setContentView(R.layout.activity_map);
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
         presenter.onCreate();
         getSupportActionBar().setTitle("Coverage Map");
     }

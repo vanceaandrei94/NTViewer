@@ -69,13 +69,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         presenter.startViewComplaintsActivity();
     }
 
-    @OnClick(R.id.possible_clients_btn)
-    public void startViewRequestsActivity() {
-        showToast("Possible clients btn clicked.");
-    }
-
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    @OnClick(R.id.network_route_btn)
+    public void startNetworkRouteActivity() {
+        presenter.startNetworkRouteActivity();
     }
 
     @Override

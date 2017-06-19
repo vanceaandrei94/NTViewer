@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.unbm.andrei.ntviewer.R;
@@ -41,11 +40,8 @@ public class CoverageMapActivity extends MapActivity implements ICoverageMapView
                 .coverageMapModule(new CoverageMapModule(this))
                 .build().inject(this);
 
-        setContentView(R.layout.activity_map);
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
         presenter.onCreate();
-        getSupportActionBar().setTitle("Coverage Map");
+        getSupportActionBar().setTitle(getResources().getString(R.string.coverage_map_title));
     }
 
     @Override

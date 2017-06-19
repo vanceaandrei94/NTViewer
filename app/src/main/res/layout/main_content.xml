@@ -33,9 +33,9 @@
             android:text="@string/btn_complaints" />
 
         <Button
-            android:id="@+id/possible_clients_btn"
+            android:id="@+id/network_route_btn"
             style="@style/NavigationButton"
-            android:text="@string/btn_possible_clients" />
+            android:text="@string/btn_network_route" />
 
     </LinearLayout>
 </RelativeLayout>

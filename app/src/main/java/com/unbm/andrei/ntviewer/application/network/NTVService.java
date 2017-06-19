@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 
 public interface NTVService {
 
-    String BASE_URL = "http://provider-name.ro/services/ispAnalyser/";
+    String BASE_URL = "http://provider-name.ro/services/ispManager/";
 
     @GET("/users")
     Observable<LoggedInUser> loginUser(@Query("username") String username, @Query("password") String password);
@@ -27,4 +27,7 @@ public interface NTVService {
 
     @GET("/coverage/complaints")
     Observable<List<Complaint>> getComplaints();
+
+    @GET("/networkRoute")
+    Observable /* type */ getNetworkRoute();
 }

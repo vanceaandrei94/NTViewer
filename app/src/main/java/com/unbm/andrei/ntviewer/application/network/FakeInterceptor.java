@@ -15,10 +15,10 @@ import okhttp3.ResponseBody;
  */
 
 public class FakeInterceptor implements Interceptor {
-    private static final String ALL_SITES = "/allSites";
     private static final String USERS = "/users";
     private static final String COVERAGE_PROVIDERS = "/coverage/providers";
     private static final String COMPLAINTS = "/coverage/complaints";
+    private static final String NETWORK_ROUTE = "/networkRoute";
 
 
     private static final String TEST_USERNAME = "test";
@@ -34,17 +34,6 @@ public class FakeInterceptor implements Interceptor {
             e.printStackTrace();
         }
         switch (chain.request().url().encodedPath()) {
-            case ALL_SITES:
-                responseString = Helper.GET_ALL_SITES_JSON;
-                response = new Response.Builder()
-                        .code(200)
-                        .message(responseString)
-                        .request(chain.request())
-                        .protocol(Protocol.HTTP_1_1)
-                        .body(ResponseBody.create(MediaType.parse("application/json"), responseString.getBytes()))
-                        .addHeader("content-type", "application/json")
-                        .build();
-                break;
             case USERS:
                 String[] queryParams = chain.request().url().url().getQuery().split("&");
                 String username = queryParams[0].split("=")[1];
@@ -84,6 +73,17 @@ public class FakeInterceptor implements Interceptor {
                 break;
             case COMPLAINTS:
                 responseString = Helper.GET_COMPLAINTS_JSON;
+                response = new Response.Builder()
+                        .code(200)
+                        .message(responseString)
+                        .request(chain.request())
+                        .protocol(Protocol.HTTP_1_1)
+                        .body(ResponseBody.create(MediaType.parse("application/json"), responseString.getBytes()))
+                        .addHeader("content-type", "application/json")
+                        .build();
+                break;
+            case NETWORK_ROUTE:
+                responseString = Helper.GET_NETWORK_ROUTE_JSON;
                 response = new Response.Builder()
                         .code(200)
                         .message(responseString)

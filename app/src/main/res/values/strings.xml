@@ -35,6 +35,11 @@
     <string name="all_sites">All sites</string>
     <string name="sign_in">Sign in</string>
     <string name="btn_area_coverage">Acoperire</string>
-    <string name="btn_possible_clients">Posibili clienti</string>
+    <string name="btn_network_route">Traseul retelei</string>
     <string name="btn_complaints">Deranjamente</string>
+    <string name="activate_gps_title">GPS</string>
+    <string name="activate_gps_message">GPS needs to be enabled in order to continue. Please activate your gps service first.</string>
+    <string name="activate_gps_button">Ok</string>
+    <string name="network_route_title">Network Route</string>
+    <string name="coverage_map_title">Coverage Map</string>
 </resources>
