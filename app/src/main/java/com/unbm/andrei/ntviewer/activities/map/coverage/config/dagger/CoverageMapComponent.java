@@ -1,6 +1,6 @@
-package com.unbm.andrei.ntviewer.activities.coveragemap.config.dagger;
+package com.unbm.andrei.ntviewer.activities.map.coverage.config.dagger;
 
-import com.unbm.andrei.ntviewer.activities.coveragemap.CoverageMapActivity;
+import com.unbm.andrei.ntviewer.activities.map.coverage.CoverageMapActivity;
 import com.unbm.andrei.ntviewer.application.dagger.AppComponent;
 
 import dagger.Component;

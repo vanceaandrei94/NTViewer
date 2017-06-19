@@ -1,4 +1,4 @@
-package com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp;
+package com.unbm.andrei.ntviewer.activities.map.coverage.config.mvp;
 
 import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 

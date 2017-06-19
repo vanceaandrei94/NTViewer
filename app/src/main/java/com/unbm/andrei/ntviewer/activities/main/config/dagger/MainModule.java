@@ -24,8 +24,8 @@ public class MainModule {
 
     @Provides
     @MainScope
-    public MainModel provideModel(NTVService NTVService) {
-        return new MainModel(NTVService, activity);
+    public MainModel provideModel() {
+        return new MainModel(activity);
     }
 
     @Provides

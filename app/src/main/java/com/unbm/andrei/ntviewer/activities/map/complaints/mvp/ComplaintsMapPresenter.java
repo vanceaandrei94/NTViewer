@@ -1,13 +1,9 @@
-package com.unbm.andrei.ntviewer.activities.coveragemap.config.mvp;
+package com.unbm.andrei.ntviewer.activities.map.complaints.mvp;
 
 import android.util.Log;
 
 import com.unbm.andrei.ntviewer.activities.common.mvp.BasePresenter;
-import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 
-import java.util.List;
-
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -17,21 +13,21 @@ import io.reactivex.schedulers.Schedulers;
  * Created by andrei.vancea on 5/8/2017.
  */
 
-public class CoverageMapPresenter implements BasePresenter {
+public class ComplaintsMapPresenter implements BasePresenter {
 
-    private final ICoverageMapView view;
-    private CoverageMapModel model;
+    private final IComplaintsMapView view;
+    private ComplaintsMapModel model;
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public CoverageMapPresenter(ICoverageMapView view, CoverageMapModel model) {
+    public ComplaintsMapPresenter(IComplaintsMapView view, ComplaintsMapModel model) {
         this.view = view;
         this.model = model;
     }
 
     @Override
     public void onCreate() {
-        compositeDisposable.add(getProvidersCoverage());
+        compositeDisposable.add(getComplaints());
     }
 
     @Override
@@ -39,11 +35,11 @@ public class CoverageMapPresenter implements BasePresenter {
         compositeDisposable.dispose();
     }
 
-    private Disposable getProvidersCoverage(){
-        return model.getProvidersCoverage()
+    private Disposable getComplaints(){
+        return model.getComplaints()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(providers -> view.drawCoverage(providers), ex -> Log.e("BASIC", "Error loading providers coverage: " + ex.getMessage()) );
+                .subscribe(complaints -> view.drawCoverage(complaints), ex -> Log.e("BASIC", "Error loading providers coverage: " + ex.getMessage()) );
     }
 
 }

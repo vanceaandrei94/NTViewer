@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.unbm.andrei.ntviewer.activities.coveragemap.CoverageMapActivity">
+    tools:context=".activities.map.coverage.CoverageMapActivity">
 
     <fragment
         android:id="@+id/map"

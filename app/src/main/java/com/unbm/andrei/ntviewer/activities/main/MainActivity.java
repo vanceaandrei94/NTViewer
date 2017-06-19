@@ -64,14 +64,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         presenter.startViewCoverageActivity();
     }
 
-    @OnClick(R.id.requests_btn)
-    public void startViewRequestsActivity() {
-        showToast("Requests btn clicked.");
-    }
-
     @OnClick(R.id.complaints_btn)
     public void startViewComplaintsActivity() {
-        showToast("Complaints btn clicked.");
+        presenter.startViewComplaintsActivity();
+    }
+
+    @OnClick(R.id.possible_clients_btn)
+    public void startViewRequestsActivity() {
+        showToast("Possible clients btn clicked.");
     }
 
     public void showToast(String message) {
