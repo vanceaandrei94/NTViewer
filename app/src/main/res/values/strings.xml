@@ -42,4 +42,8 @@
     <string name="activate_gps_button">Ok</string>
     <string name="network_route_title">Network Route</string>
     <string name="coverage_map_title">Coverage Map</string>
+    <string name="node_id_label">Node ID:</string>
+    <string name="node_name_label">Name:</string>
+    <string name="node_ip_label">IP:</string>
+    <string name="node_last_updated_label">Last Updated:</string>
 </resources>

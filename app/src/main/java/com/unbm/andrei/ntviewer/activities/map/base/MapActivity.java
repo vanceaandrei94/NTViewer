@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.util.DialogHelper;
@@ -48,6 +50,7 @@ public abstract class MapActivity extends AppCompatActivity implements OnMapRead
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
                 .subscribe(granted -> addMapFeaturesIfGranted(granted));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(47.660428, 23.542505), 15));
     }
 
     @SuppressWarnings("MissingPermission")

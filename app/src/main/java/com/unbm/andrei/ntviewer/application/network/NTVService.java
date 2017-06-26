@@ -3,7 +3,8 @@ package com.unbm.andrei.ntviewer.application.network;
 import com.unbm.andrei.ntviewer.application.network.models.Complaint;
 import com.unbm.andrei.ntviewer.application.network.models.LoggedInUser;
 import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
-import com.unbm.andrei.ntviewer.models.User;
+import com.unbm.andrei.ntviewer.application.network.models.networkroute.NetworkRoute;
+import com.unbm.andrei.ntviewer.application.network.models.networkroute.NodeInfo;
 
 import java.util.List;
 
@@ -28,6 +29,9 @@ public interface NTVService {
     @GET("/coverage/complaints")
     Observable<List<Complaint>> getComplaints();
 
-    @GET("/networkRoute")
-    Observable /* type */ getNetworkRoute();
+    @GET("/networkRoutes")
+    Observable<List<NetworkRoute>> getNetworkRoutes();
+
+    @GET("/networkRoutes/nodeInfo")
+    Observable<NodeInfo> getNodeInfo(@Query("nodeId") String id);
 }
