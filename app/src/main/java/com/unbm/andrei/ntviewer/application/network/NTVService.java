@@ -3,7 +3,8 @@ package com.unbm.andrei.ntviewer.application.network;
 import com.unbm.andrei.ntviewer.application.network.models.Complaint;
 import com.unbm.andrei.ntviewer.application.network.models.LoggedInUser;
 import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
-import com.unbm.andrei.ntviewer.models.User;
+import com.unbm.andrei.ntviewer.application.network.models.networkroute.NetworkRoute;
+import com.unbm.andrei.ntviewer.application.network.models.networkroute.NodeInfo;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import retrofit2.http.Query;
 
 public interface NTVService {
 
-    String BASE_URL = "http://provider-name.ro/services/ispAnalyser/";
+    String BASE_URL = "http://provider-name.ro/services/ispManager/";
 
     @GET("/users")
     Observable<LoggedInUser> loginUser(@Query("username") String username, @Query("password") String password);
@@ -27,4 +28,10 @@ public interface NTVService {
 
     @GET("/coverage/complaints")
     Observable<List<Complaint>> getComplaints();
+
+    @GET("/networkRoutes")
+    Observable<List<NetworkRoute>> getNetworkRoutes();
+
+    @GET("/networkRoutes/nodeInfo")
+    Observable<NodeInfo> getNodeInfo(@Query("nodeId") String id);
 }
