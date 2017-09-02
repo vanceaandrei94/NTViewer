@@ -1,4 +1,38 @@
 <resources>
-    <string name="app_name">NTViewer</string>
+    <string name="app_name">ISP Manager</string>
     <string name="action_settings">Settings</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="btn_area_coverage">Coverage</string>
+    <string name="btn_network_route">Network Route</string>
+    <string name="btn_complaints">Defects</string>
+    <string name="activate_gps_title">GPS</string>
+    <string name="activate_gps_message">GPS needs to be enabled in order to continue. Please activate your gps service first.</string>
+    <string name="activate_gps_button">Ok</string>
+    <string name="network_route_title">Network Route</string>
+    <string name="coverage_map_title">Coverage Map</string>
+    <string name="node_id_label">ID:</string>
+    <string name="node_ip_label">IP:</string>
+    <string name="node_last_updated_label">Last Updated:</string>
+    <string name="problem_report_title">Report Problem</string>
+    <string name="problem_type">Type:</string>
+    <string name="problem_details_label">Problem details:</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_continue">Continue</string>
+
+
+    <string name="equipment_install">Install equipment</string>
+    <string name="new_contract">New contract</string>
+    <string name="fix_isp_equipment">Decommissioning ISP\'s equipment</string>
+    <string name="fix_subscriber_equipment">Decommissioning subscriber\'s equipment</string>
+    <string name="derangement">Derangement/Malfunction</string>
+
+    <string name="urgent">Urgent</string>
+    <string name="blocked">Blocked</string>
+    <string name="low_priority">Low</string>
+    <string name="high_priority">High</string>
+    <string name="problem_priority">Priority:</string>
+    <string name="problem_report">Problem Report</string>
+    <string name="problem_report_saved_successfully">Report saved successfuly</string>
+    <string name="current_location_found">Current location detected</string>
 </resources>
