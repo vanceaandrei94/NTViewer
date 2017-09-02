@@ -1,5 +1,11 @@
 package com.unbm.andrei.ntviewer.test;
 
+import com.unbm.andrei.ntviewer.application.NTViewerApplication;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,20 +15,28 @@ import java.util.List;
 
 public class Helper {
 
+    public static String getJsonResource(int resId) throws IOException {
+        InputStream raw = NTViewerApplication.getInstance().getResources().openRawResource(resId);
+        BufferedReader is = new BufferedReader(new InputStreamReader(raw, "UTF8"));
+        String line;
+        StringBuilder stringBuilder = new StringBuilder();
+        while ((line = is.readLine()) != null) {
+            stringBuilder.append(line);
+        }
+        return stringBuilder.toString();
+    }
+
     // TODO: 6/14/2017 Change the response, for successfull login the user should get a token.
     public static final String LOGIN_SUCCEEDED_JSON =
             "{" +
-                    "\"User\": {" +
-                    "   \"username\":\"test\"," +
-                    "\"isWorking\":\"true\"" +
-                    "   }" +
+                    "\"username\":\"test\"" +
                     "}";
     public static final String INVALID_CREDENTIALS = "{\"message\":\"Invalid Credentials\"}";
     public static final String GET_PROVIDERS_COVERAGE_JSON = "[\n" +
             "  {\n" +
             "\t\"name\": \"DIGI\",\n" +
             "\t\"color\": \"RED\",\n" +
-            "\t\"subscribers\": [{\n" +
+            "\t\"geoLocations\": [{\n" +
             "\t\t\t\"lat\": 47.661506,\n" +
             "\t\t\t\"lon\": 23.574064\n" +
             "\t\t},\n" +
@@ -63,7 +77,7 @@ public class Helper {
             "{\n" +
             "\t\"name\": \"TELEKOM\",\n" +
             "\t\"color\": \"BLUE\",\n" +
-            "\t\"subscribers\": [{\n" +
+            "\t\"geoLocations\": [{\n" +
             "\t\t\t\"lat\": 46.661506,\n" +
             "\t\t\t\"lon\": 23.574064\n" +
             "\t\t},\n" +
@@ -102,7 +116,7 @@ public class Helper {
             "\t]\n" +
             "}\n" +
             "]";
-    public static final String GET_COMPLAINTS_JSON = "[\n" +
+    public static final String GET_DERANGEMENTS_JSON = "[\n" +
             "  {\n" +
             "\t\"priority\": 90,\n" +
             "\t\"lat\": 47.660306,\n" +

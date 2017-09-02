@@ -1,6 +1,7 @@
 package com.unbm.andrei.ntviewer.activities.login.config.mvp;
 
 import com.unbm.andrei.ntviewer.activities.common.mvp.BasePresenter;
+import com.unbm.andrei.ntviewer.util.LogoutTimer;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -32,13 +33,16 @@ public class LoginPresenter implements BasePresenter {
         compositeDisposable.dispose();
     }
 
-    public void signInUser(String username, String password){
-       view.showLoading(true);
+    public void signInUser(String username, String password) {
+        view.showLoading(true);
         compositeDisposable.add(model.loginUser(username, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEach(__ -> view.showLoading(false))
-                .subscribe(user -> model.startMainActivity(user), ex -> userLoginFailed(ex))
+                .subscribe(user -> {
+                    model.startMainActivity(user);
+                    LogoutTimer.getInstance().startTimer();
+                }, ex -> userLoginFailed(ex))
         );
     }
 

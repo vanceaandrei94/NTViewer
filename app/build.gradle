@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'realm-android'
 
 android {
     compileOptions {
@@ -7,7 +8,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.unbm.andrei.ntviewer"
         minSdkVersion 22
@@ -23,6 +24,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    retrolambda {
+        javaVersion JavaVersion.VERSION_1_6
+        defaultMethods false
+        incremental true
     }
 }
 
@@ -58,7 +65,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
     //Google services
-    compile 'com.google.android.gms:play-services-maps:10.2.4'
+    compile 'com.google.android.gms:play-services-maps:11.0.4'
+    compile 'com.google.android.gms:play-services-location:11.0.4'
 
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

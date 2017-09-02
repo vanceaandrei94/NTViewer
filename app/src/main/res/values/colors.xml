@@ -5,8 +5,10 @@
     <color name="colorPrimaryDark">#002171</color>
     <color name="colorAccent">#5472d3</color>
 
-    <color name="color_badge_good">#00FF00</color>
-    <color name="color_badge_bad">#FF0000</color>
-    <color name="color_badge_average">#FFFF00</color>
+    <color name="ntv_base_text_color">#000</color>
+    <color name="transparent">#00000000</color>
+    <color name="button_color_inactive">#60888888</color>
+    <color name="button_color_active">#CCFFFFFF</color>
+    <color name="delimiter_color">#000000</color>
 
 </resources>

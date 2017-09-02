@@ -1,9 +1,15 @@
 package com.unbm.andrei.ntviewer.activities.login;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -15,6 +21,7 @@ import com.unbm.andrei.ntviewer.activities.login.config.dagger.LoginModule;
 import com.unbm.andrei.ntviewer.activities.login.config.mvp.ILoginView;
 import com.unbm.andrei.ntviewer.activities.login.config.mvp.LoginPresenter;
 import com.unbm.andrei.ntviewer.application.NTViewerApplication;
+import com.unbm.andrei.ntviewer.util.LocationProvider;
 
 import javax.inject.Inject;
 
@@ -22,8 +29,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements ILoginView {
+public class LoginActivity extends AppCompatActivity implements ILoginView, OnRequestPermissionsResultCallback {
 
+    public static final int ACCESS_LOCATION_PERMISSION_CODE = 112;
     @Inject
     LoginPresenter presenter;
 
@@ -35,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     private ProgressDialog progressDialog;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                 .build()
                 .inject(this);
         ButterKnife.bind(this);
+
+//       -- remove those from release
+        usernameEt.setText("test");
+        passwordEt.setText("pass");
+//       -- remove those from release
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Signing in...");
 
@@ -52,6 +67,29 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, null));
         }
         presenter.onCreate();
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_PERMISSION_CODE);
+        } else {
+            LocationProvider.getInstance().registerLocationListener();
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == ACCESS_LOCATION_PERMISSION_CODE) {
+            boolean granted = true;
+            for (int grantResult : grantResults) {
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    granted = false;
+                }
+            }
+            if (granted) {
+                LocationProvider.getInstance().registerLocationListener();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     @OnClick(R.id.btn_sign_in)

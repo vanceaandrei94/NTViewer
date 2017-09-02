@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class NetworkProvider implements Parcelable{
+public class NetworkProvider implements Parcelable {
 
     @SerializedName("name")
     @Expose
@@ -16,14 +16,14 @@ public class NetworkProvider implements Parcelable{
     @SerializedName("color")
     @Expose
     private String color;
-    @SerializedName("subscribers")
+    @SerializedName("geoLocations")
     @Expose
-    private List<Subscriber> subscribers = null;
+    private List<GeoLocation> geoLocations = null;
 
     protected NetworkProvider(Parcel in) {
         name = in.readString();
         color = in.readString();
-        subscribers = in.createTypedArrayList(Subscriber.CREATOR);
+        geoLocations = in.createTypedArrayList(GeoLocation.CREATOR);
     }
 
     public static final Creator<NetworkProvider> CREATOR = new Creator<NetworkProvider>() {
@@ -54,12 +54,12 @@ public class NetworkProvider implements Parcelable{
         this.color = color;
     }
 
-    public List<Subscriber> getSubscribers() {
-        return subscribers;
+    public List<GeoLocation> getGeoLocations() {
+        return geoLocations;
     }
 
-    public void setSubscribers(List<Subscriber> subscribers) {
-        this.subscribers = subscribers;
+    public void setGeoLocations(List<GeoLocation> geoLocations) {
+        this.geoLocations = geoLocations;
     }
 
     @Override
@@ -71,6 +71,6 @@ public class NetworkProvider implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(color);
-        dest.writeTypedList(subscribers);
+        dest.writeTypedList(geoLocations);
     }
 }

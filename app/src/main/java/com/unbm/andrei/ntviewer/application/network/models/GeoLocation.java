@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Subscriber implements Parcelable{
+public class GeoLocation implements Parcelable{
 
     @SerializedName("lat")
     @Expose
@@ -15,20 +15,20 @@ public class Subscriber implements Parcelable{
     @Expose
     private double lon;
 
-    protected Subscriber(Parcel in) {
+    protected GeoLocation(Parcel in) {
         lat = in.readDouble();
         lon = in.readDouble();
     }
 
-    public static final Creator<Subscriber> CREATOR = new Creator<Subscriber>() {
+    public static final Creator<GeoLocation> CREATOR = new Creator<GeoLocation>() {
         @Override
-        public Subscriber createFromParcel(Parcel in) {
-            return new Subscriber(in);
+        public GeoLocation createFromParcel(Parcel in) {
+            return new GeoLocation(in);
         }
 
         @Override
-        public Subscriber[] newArray(int size) {
-            return new Subscriber[size];
+        public GeoLocation[] newArray(int size) {
+            return new GeoLocation[size];
         }
     };
 

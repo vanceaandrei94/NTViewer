@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Andrei on 6/11/2017.
  */
 
-public class Complaint implements Parcelable {
+public class Derangement implements Parcelable {
 
     @SerializedName("priority")
     @Expose
@@ -22,21 +22,21 @@ public class Complaint implements Parcelable {
     @Expose
     private float lon;
 
-    protected Complaint(Parcel in) {
+    protected Derangement(Parcel in) {
         priority = in.readInt();
         lat = in.readFloat();
         lon = in.readFloat();
     }
 
-    public static final Creator<Complaint> CREATOR = new Creator<Complaint>() {
+    public static final Creator<Derangement> CREATOR = new Creator<Derangement>() {
         @Override
-        public Complaint createFromParcel(Parcel in) {
-            return new Complaint(in);
+        public Derangement createFromParcel(Parcel in) {
+            return new Derangement(in);
         }
 
         @Override
-        public Complaint[] newArray(int size) {
-            return new Complaint[size];
+        public Derangement[] newArray(int size) {
+            return new Derangement[size];
         }
     };
 

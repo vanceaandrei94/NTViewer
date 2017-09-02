@@ -1,6 +1,6 @@
 package com.unbm.andrei.ntviewer.application.network;
 
-import com.unbm.andrei.ntviewer.application.network.models.Complaint;
+import com.unbm.andrei.ntviewer.application.network.models.Derangement;
 import com.unbm.andrei.ntviewer.application.network.models.LoggedInUser;
 import com.unbm.andrei.ntviewer.application.network.models.NetworkProvider;
 import com.unbm.andrei.ntviewer.application.network.models.networkroute.NetworkRoute;
@@ -27,7 +27,7 @@ public interface NTVService {
     Observable<List<NetworkProvider>> getProviders();
 
     @GET("/coverage/complaints")
-    Observable<List<Complaint>> getComplaints();
+    Observable<List<Derangement>> getComplaints();
 
     @GET("/networkRoutes")
     Observable<List<NetworkRoute>> getNetworkRoutes();

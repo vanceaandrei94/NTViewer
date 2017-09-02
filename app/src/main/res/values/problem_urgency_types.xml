@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="problem_priorities">
+        <item>@string/blocked</item>
+        <item>@string/urgent</item>
+        <item>@string/high_priority</item>
+        <item>@string/low_priority</item>
+    </string-array>
+</resources>

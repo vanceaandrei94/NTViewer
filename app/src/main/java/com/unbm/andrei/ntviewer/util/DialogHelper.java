@@ -9,6 +9,12 @@ import android.widget.TextView;
 
 import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.application.network.models.networkroute.NodeInfo;
+import com.unbm.andrei.ntviewer.models.ProblemReport;
+import com.unbm.andrei.ntviewer.models.ProblemReportTranslator;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +38,16 @@ public class DialogHelper {
         nodeInfoDialog.show();
     }
 
+    public static void showProblemReportInfo(Context context, ProblemReport problemReport) {
+        ProblemReportPopup problemReportPopup = new ProblemReportPopup(context);
+
+        problemReportPopup.showReportPopup(ProblemReportTranslator.problemTypeToString(problemReport.getProblemType()),
+                ProblemReportTranslator.priorityTypeToString(problemReport.getProblemPriority()),
+                problemReport.getProblemDetails(),
+                problemReport.getReportedAt());
+        problemReportPopup.show();
+    }
+
     static class NodeInfoDialog extends Dialog {
 
         private final NodeInfo nodeInfo;
@@ -48,6 +64,11 @@ public class DialogHelper {
         @BindView(R.id.node_last_updated)
         TextView lastUpdated;
 
+        public NodeInfoDialog(@NonNull Context context, NodeInfo nodeInfo) {
+            super(context);
+            this.nodeInfo = nodeInfo;
+        }
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -59,10 +80,40 @@ public class DialogHelper {
             ip.setText(nodeInfo.getIp());
             lastUpdated.setText(nodeInfo.getLastUpdated());
         }
+    }
 
-        public NodeInfoDialog(@NonNull Context context, NodeInfo nodeInfo) {
+    static class ProblemReportPopup extends AlertDialog {
+        // TODO: 6/26/2017 Add view, and logic for this
+
+        @BindView(R.id.problem_reported_at)
+        TextView tvReportedAt;
+
+        @BindView(R.id.problem_type)
+        TextView tvProblemType;
+
+        @BindView(R.id.problem_priority)
+        TextView tvProblemPriority;
+
+        @BindView(R.id.problem_details)
+        TextView tvProblemDetails;
+
+        public ProblemReportPopup(@NonNull Context context) {
             super(context);
-            this.nodeInfo = nodeInfo;
+        }
+
+        public void showReportPopup(String problemType, String problemPriority, String problemDetails, Date reportedAt) {
+            tvProblemType.setText(problemType);
+            tvProblemPriority.setText(problemPriority);
+            tvProblemDetails.setText(problemDetails);
+            String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(reportedAt);
+            tvReportedAt.setText(date);
+        }
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.dialog_problem_report);
+            ButterKnife.bind(this);
         }
     }
 }

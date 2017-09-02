@@ -101,12 +101,46 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    
+
     <style name="LogoImage">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">72dp</item>
         <item name="android:layout_gravity">center_vertical</item>
+    </style>
 
+    <style name="NTViewer" parent="Base.Theme.AppCompat">
+        <item name="android:textColor">@color/ntv_base_text_color</item>
+        <item name="android:fontFamily">Roboto Regular</item>
+    </style>
+
+    <style name="NTViewer.AlertDialog" parent="NTViewer">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/alert_dialog_background</item>
+    </style>
+
+    <style name="NTViewer.AlertDialog.Label" parent="NTViewer">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="NTViewer.DialogButton" parent="NTViewer.ButtonBase">
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="NTViewer.ButtonBase">
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/base_button_text_size</item>
+        <item name="android:background">@drawable/base_button_background</item>
+    </style>
+
+    <style name="NTViewer.Delimiter">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@color/delimiter_color</item>
     </style>
 
 </resources>

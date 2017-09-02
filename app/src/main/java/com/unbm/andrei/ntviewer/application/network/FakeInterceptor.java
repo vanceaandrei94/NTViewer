@@ -1,5 +1,6 @@
 package com.unbm.andrei.ntviewer.application.network;
 
+import com.unbm.andrei.ntviewer.R;
 import com.unbm.andrei.ntviewer.test.Helper;
 
 import java.io.IOException;
@@ -17,13 +18,14 @@ import okhttp3.ResponseBody;
 public class FakeInterceptor implements Interceptor {
     private static final String USERS = "/users";
     private static final String COVERAGE_PROVIDERS = "/coverage/providers";
-    private static final String COMPLAINTS = "/coverage/complaints";
+    private static final String DERANGEMENTS = "/coverage/complaints";
     private static final String NETWORK_ROUTE = "/networkRoutes";
     private static final String NODE_INFO = "/networkRoutes/nodeInfo";
 
 
     private static final String TEST_USERNAME = "test";
     private static final String TEST_PASS = "pass";
+    private static final int JSON_PROVIDER_COVERAGE = R.raw.providers_coverage;
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -62,7 +64,7 @@ public class FakeInterceptor implements Interceptor {
                 }
                 break;
             case COVERAGE_PROVIDERS:
-                responseString = Helper.GET_PROVIDERS_COVERAGE_JSON;
+                responseString = Helper.getJsonResource(JSON_PROVIDER_COVERAGE);
                 response = new Response.Builder()
                         .code(200)
                         .message(responseString)
@@ -72,8 +74,8 @@ public class FakeInterceptor implements Interceptor {
                         .addHeader("content-type", "application/json")
                         .build();
                 break;
-            case COMPLAINTS:
-                responseString = Helper.GET_COMPLAINTS_JSON;
+            case DERANGEMENTS:
+                responseString = Helper.GET_DERANGEMENTS_JSON;
                 response = new Response.Builder()
                         .code(200)
                         .message(responseString)

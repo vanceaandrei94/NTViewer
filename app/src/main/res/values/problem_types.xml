@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="problem_types">
+        <item>@string/equipment_install</item>
+        <item>@string/fix_isp_equipment</item>
+        <item>@string/fix_subscriber_equipment</item>
+        <item>@string/derangement</item>
+        <item>@string/new_contract</item>
+    </string-array>
+</resources>

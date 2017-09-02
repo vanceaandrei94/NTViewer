@@ -40,4 +40,9 @@ public class MainPresenter implements BasePresenter {
     public void startNetworkRouteActivity() {
         model.startNetworkRouteActivity();
     }
+
+
+    public void showReportProblemScreen() {
+        model.startReportProblemActivity();
+    }
 }
