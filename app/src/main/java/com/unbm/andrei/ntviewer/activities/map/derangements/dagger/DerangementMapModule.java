@@ -2,7 +2,10 @@ package com.unbm.andrei.ntviewer.activities.map.derangements.dagger;
 
 import com.unbm.andrei.ntviewer.activities.map.derangements.DerangementMapActivity;
 import com.unbm.andrei.ntviewer.activities.map.derangements.mvp.DerangementMapModel;
+import com.unbm.andrei.ntviewer.activities.map.derangements.mvp.DerangementMapModelImpl;
 import com.unbm.andrei.ntviewer.activities.map.derangements.mvp.DerangementMapPresenter;
+import com.unbm.andrei.ntviewer.activities.map.derangements.mvp.DerangementMapPresenterImpl;
+import com.unbm.andrei.ntviewer.activities.map.derangements.mvp.DerangementMapView;
 import com.unbm.andrei.ntviewer.application.network.NTVService;
 
 import dagger.Module;
@@ -24,13 +27,13 @@ public class DerangementMapModule {
     @Provides
     @DerangementMapScope
     public DerangementMapModel provideModel(NTVService service) {
-        return new DerangementMapModel(activity, service);
+        return new DerangementMapModelImpl(activity, service);
     }
 
     @Provides
     @DerangementMapScope
-    public DerangementMapPresenter providePresenter(DerangementMapModel model) {
-        return new DerangementMapPresenter(activity, model);
+    public DerangementMapPresenter<DerangementMapView> providePresenter(DerangementMapModel model) {
+        return new DerangementMapPresenterImpl(model);
     }
 
 }

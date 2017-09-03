@@ -41,7 +41,7 @@ public class ReportProblemActivity extends AppCompatActivity implements ReportPr
     private ProgressDialog progressDialog;
 
     @Inject
-    ReportProblemPresenter presenter;
+    ReportProblemPresenter<ReportProblemView> presenter;
 
     @BindView(R.id.problem_type_spinner)
     Spinner problemTypesSpinner;
@@ -72,8 +72,8 @@ public class ReportProblemActivity extends AppCompatActivity implements ReportPr
         ButterKnife.bind(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Sending Data...");
-        presenter.onCreate();
         presenter.attachView(this);
+        presenter.onCreate();
         getSupportActionBar().setTitle("Report a problem");
 
         configure();
@@ -126,6 +126,7 @@ public class ReportProblemActivity extends AppCompatActivity implements ReportPr
 
     @Override
     protected void onDestroy() {
+        presenter.detachView();
         presenter.onDestroy();
         super.onDestroy();
     }

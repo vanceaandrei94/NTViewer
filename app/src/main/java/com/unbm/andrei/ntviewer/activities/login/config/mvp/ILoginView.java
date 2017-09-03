@@ -10,7 +10,9 @@ public interface ILoginView {
 
     void showLoading(boolean show);
 
-    void showToast(String message);
+    void showInvalidCredentialsError();
 
     Context getContext();
+
+    void showGenericError();
 }

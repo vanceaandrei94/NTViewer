@@ -2,7 +2,10 @@ package com.unbm.andrei.ntviewer.activities.problem.config.dagger;
 
 import com.unbm.andrei.ntviewer.activities.problem.ReportProblemActivity;
 import com.unbm.andrei.ntviewer.activities.problem.config.mvp.ReportProblemModel;
+import com.unbm.andrei.ntviewer.activities.problem.config.mvp.ReportProblemModelImpl;
 import com.unbm.andrei.ntviewer.activities.problem.config.mvp.ReportProblemPresenter;
+import com.unbm.andrei.ntviewer.activities.problem.config.mvp.ReportProblemPresenterImpl;
+import com.unbm.andrei.ntviewer.activities.problem.config.mvp.ReportProblemView;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,12 +26,12 @@ public class ReportProblemModule {
     @Provides
     @ReportProblemScope
     public ReportProblemModel provideModel() {
-        return new ReportProblemModel(activity);
+        return new ReportProblemModelImpl(activity);
     }
 
     @Provides
     @ReportProblemScope
-    public ReportProblemPresenter providePresenter(ReportProblemModel model) {
-        return new ReportProblemPresenter(model);
+    public ReportProblemPresenter<ReportProblemView> providePresenter(ReportProblemModel model) {
+        return new ReportProblemPresenterImpl(model);
     }
 }

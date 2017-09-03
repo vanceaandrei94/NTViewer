@@ -30,7 +30,7 @@ public class CoverageMapActivity extends MapActivity implements ICoverageMapView
     }
 
     @Inject
-    CoverageMapPresenter presenter;
+    CoverageMapPresenter<ICoverageMapView> presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +41,16 @@ public class CoverageMapActivity extends MapActivity implements ICoverageMapView
                 .coverageMapModule(new CoverageMapModule(this))
                 .build().inject(this);
 
+        presenter.attachView(this);
         presenter.onCreate();
         getSupportActionBar().setTitle(getResources().getString(R.string.coverage_map_title));
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        presenter.detachView();
         presenter.onDestroy();
+        super.onDestroy();
     }
 
     @Override

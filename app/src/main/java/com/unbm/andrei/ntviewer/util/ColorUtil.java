@@ -20,10 +20,10 @@ public class ColorUtil {
         switch (priority) {
             default:
             case PriorityType.PRIORITY_LOW:
-                return Color.argb((int) (opacity / 100f * 255f), 255, 0, 0);
+                return Color.argb((int) (opacity / 100f * 255f), 0, 255, 0);
             case PriorityType.PRIORITY_BLOCKED:
             case PriorityType.PRIORITY_URGENT:
-                return Color.argb((int) (opacity / 100f * 255f), 0, 255, 0);
+                return Color.argb((int) (opacity / 100f * 255f), 255, 0, 0);
             case PriorityType.PRIORITY_HIGH:
                 return Color.argb((int) (opacity / 100f * 255f), 255, 255, 0);
         }

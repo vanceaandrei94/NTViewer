@@ -50,7 +50,7 @@ public class NetworkRouteActivity extends MapActivity implements NetworkRouteVie
     private ProgressDialog progressDialog;
 
     @Inject
-    NetworkRoutePresenter presenter;
+    NetworkRoutePresenter<NetworkRouteView> presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,13 +61,14 @@ public class NetworkRouteActivity extends MapActivity implements NetworkRouteVie
                 .appComponent(NTViewerApplication.get(this).getComponent())
                 .networkRouteModule(new NetworkRouteModule(this))
                 .build().inject(this);
-
+        presenter.attachView(this);
         presenter.onCreate();
         getSupportActionBar().setTitle(getResources().getString(R.string.network_route_title));
     }
 
     @Override
     protected void onDestroy() {
+        presenter.detachView();
         presenter.onDestroy();
         super.onDestroy();
     }
@@ -78,8 +79,6 @@ public class NetworkRouteActivity extends MapActivity implements NetworkRouteVie
 
         map.setOnPolygonClickListener(polygon -> presenter.getInfoForNode(String.valueOf(polygon.getTag())));
         map.setOnCircleClickListener(circle -> presenter.getInfoForNode(String.valueOf(circle.getTag())));
-//        map.setOnPolygonClickListener(polygon -> Toast.makeText(this, "Polygon Clicked", Toast.LENGTH_SHORT).show());
-//        map.setOnCircleClickListener(circle -> Toast.makeText(this, "Circle Clicked", Toast.LENGTH_SHORT).show());
     }
 
     @Override

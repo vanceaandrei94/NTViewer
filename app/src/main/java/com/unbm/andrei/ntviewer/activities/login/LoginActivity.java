@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, OnRe
 
     public static final int ACCESS_LOCATION_PERMISSION_CODE = 112;
     @Inject
-    LoginPresenter presenter;
+    LoginPresenter<ILoginView> presenter;
 
     @BindView(R.id.input_username)
     EditText usernameEt;
@@ -66,13 +66,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, OnRe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark, null));
         }
-        presenter.onCreate();
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_PERMISSION_CODE);
         } else {
             LocationProvider.getInstance().registerLocationListener();
         }
-
+        presenter.attachView(this);
+        presenter.onCreate();
     }
 
     @Override
@@ -99,14 +99,15 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, OnRe
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
             presenter.signInUser(username, password);
         } else {
-            showToast("Fields must not be empty");
+            showInvalidCredentialsError();
         }
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        presenter.detachView();
         presenter.onDestroy();
+        super.onDestroy();
     }
 
     @Override
@@ -119,8 +120,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, OnRe
     }
 
     @Override
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void showInvalidCredentialsError() {
+        Toast.makeText(this, getString(R.string.invalid_credentials_error), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showGenericError() {
+        Toast.makeText(this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
     }
 
     @Override

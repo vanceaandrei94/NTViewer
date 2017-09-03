@@ -35,4 +35,7 @@
     <string name="problem_report">Problem Report</string>
     <string name="problem_report_saved_successfully">Report saved successfuly</string>
     <string name="current_location_found">Current location detected</string>
+    <string name="btn_resolve">Resolve</string>
+    <string name="invalid_credentials_error">Invalid credentials, please try again.</string>
+    <string name="something_went_wrong">Something went wrong, please try again later.</string>
 </resources>

@@ -33,10 +33,8 @@ public class AppDatabase {
 
     public void saveProblemReport(ProblemReport problemReport) {
         realm.beginTransaction();
-        Number id = realm.where(ProblemReportRealm.class).max("id");
-        int nextID = id != null ? id.intValue() + 1 : 1;
-        ProblemReportRealm problemReportRealm = realm.createObject(ProblemReportRealm.class, nextID);
-        problemReportIntoRealm(problemReportRealm, problemReport);
+        ProblemReportRealm problemReportRealm = problemReportIntoRealm(problemReport);
+        realm.insertOrUpdate(problemReportRealm);
         realm.commitTransaction();
     }
 
@@ -50,26 +48,37 @@ public class AppDatabase {
             problemReport.setReportedAt(dbResult.getReportedAt());
             problemReport.setProblemPriority(dbResult.getProblemPriority());
             problemReport.setProblemDetails(dbResult.getProblemDescription());
+            problemReport.setLat(dbResult.getLat());
+            problemReport.setLon(dbResult.getLon());
+            problemReport.setActive(dbResult.isActive());
             reports.add(problemReport);
         }
 
         return reports;
     }
 
-    public void updateReport(int reportId, ProblemReport problemReport) {
+    public void resolveReport(int reportId) {
+        realm.beginTransaction();
         ProblemReportRealm reportRealm = realm.where(ProblemReportRealm.class).equalTo("id", reportId).findFirst();
         if (reportRealm != null) {
-            realm.beginTransaction();
-            problemReportIntoRealm(reportRealm, problemReport);
-            realm.commitTransaction();
+            reportRealm.setActive(false);
+            reportRealm.deleteFromRealm();
         }
+        realm.commitTransaction();
     }
 
-    private void problemReportIntoRealm(ProblemReportRealm problemReportRealm, ProblemReport problemReport) {
+    private ProblemReportRealm problemReportIntoRealm(ProblemReport problemReport) {
+        Number id = realm.where(ProblemReportRealm.class).max("id");
+        int nextID = id != null ? id.intValue() + 1 : 1;
+        ProblemReportRealm problemReportRealm = realm.createObject(ProblemReportRealm.class, nextID);
         problemReportRealm.setProblemType(problemReport.getProblemType());
         problemReportRealm.setProblemPriority(problemReport.getProblemPriority());
         problemReportRealm.setProblemDescription(problemReport.getProblemDetails());
+        problemReportRealm.setLat(problemReport.getLat());
+        problemReportRealm.setLon(problemReport.getLon());
+        problemReportRealm.setActive(problemReport.isActive());
         problemReportRealm.setReportedAt(new GregorianCalendar().getTime());
+        return problemReportRealm;
     }
 
     public ProblemReport getReportById(int id) {
@@ -83,6 +92,11 @@ public class AppDatabase {
         problemReport.setProblemPriority(problemReport.getProblemPriority());
         problemReport.setReportedAt(problemReportRealm.getReportedAt());
         problemReport.setProblemType(problemReportRealm.getProblemType());
+        problemReport.setActive(problemReportRealm.isActive());
+        problemReport.setLat(problemReportRealm.getLat());
+        problemReport.setLon(problemReportRealm.getLon());
+        problemReport.setReportedAt(problemReportRealm.getReportedAt());
+        problemReport.setId(problemReportRealm.getId());
         return problemReport;
     }
 }

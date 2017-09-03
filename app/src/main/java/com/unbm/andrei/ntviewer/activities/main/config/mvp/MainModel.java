@@ -1,38 +1,15 @@
 package com.unbm.andrei.ntviewer.activities.main.config.mvp;
 
-import android.app.Activity;
-
-import com.unbm.andrei.ntviewer.activities.main.MainActivity;
-import com.unbm.andrei.ntviewer.activities.map.derangements.DerangementMapActivity;
-import com.unbm.andrei.ntviewer.activities.map.coverage.CoverageMapActivity;
-import com.unbm.andrei.ntviewer.activities.map.networkroute.NetworkRouteActivity;
-import com.unbm.andrei.ntviewer.activities.problem.ReportProblemActivity;
-
 /**
- * Created by Andrei on 4/30/2017.
+ * Created by Andrei on 9/3/2017.
  */
 
-public class MainModel {
+public interface MainModel {
+    void startMapCoverageActivity();
 
-    private Activity activity;
+    void startComplaintsActivity();
 
-    public MainModel(MainActivity activity) {
-        this.activity = activity;
-    }
+    void startNetworkRouteActivity();
 
-    public void startMapCoverageActivity() {
-        CoverageMapActivity.start(activity);
-    }
-
-    public void startComplaintsActivity() {
-        DerangementMapActivity.start(activity);
-    }
-
-    public void startNetworkRouteActivity() {
-        NetworkRouteActivity.start(activity);
-    }
-
-    public void startReportProblemActivity() {
-        ReportProblemActivity.start(activity);
-    }
+    void startReportProblemActivity();
 }

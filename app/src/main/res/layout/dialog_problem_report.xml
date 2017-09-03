@@ -85,4 +85,38 @@
             android:maxLines="12" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/view_delimiter"
+        style="@style/NTViewer.Delimiter"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@+id/buttons_container" />
+
+    <LinearLayout
+        android:id="@id/buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel_btn"
+            style="@style/NTViewer.ButtonBase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight=".5"
+            android:text="@string/btn_cancel" />
+
+
+        <Button
+            android:id="@+id/resolve_btn"
+            style="@style/NTViewer.ButtonBase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight=".5"
+            android:text="@string/btn_resolve" />
+    </LinearLayout>
 </LinearLayout>

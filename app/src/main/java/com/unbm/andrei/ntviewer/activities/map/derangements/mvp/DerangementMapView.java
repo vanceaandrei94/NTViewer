@@ -13,4 +13,8 @@ public interface DerangementMapView {
     void drawDerangements(List<ProblemReport> providers);
 
     void showDerangementInfo(ProblemReport problemReport);
+
+    void showResolvedSuccess();
+
+    void showErrorResolvingDerangement();
 }

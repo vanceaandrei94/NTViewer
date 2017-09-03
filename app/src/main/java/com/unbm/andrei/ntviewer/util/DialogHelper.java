@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.unbm.andrei.ntviewer.R;
@@ -36,16 +37,6 @@ public class DialogHelper {
     public static void showNodeInfoDialog(Context context, NodeInfo nodeInfo) {
         NodeInfoDialog nodeInfoDialog = new NodeInfoDialog(context, nodeInfo);
         nodeInfoDialog.show();
-    }
-
-    public static void showProblemReportInfo(Context context, ProblemReport problemReport) {
-        ProblemReportPopup problemReportPopup = new ProblemReportPopup(context);
-
-        problemReportPopup.showReportPopup(ProblemReportTranslator.problemTypeToString(problemReport.getProblemType()),
-                ProblemReportTranslator.priorityTypeToString(problemReport.getProblemPriority()),
-                problemReport.getProblemDetails(),
-                problemReport.getReportedAt());
-        problemReportPopup.show();
     }
 
     static class NodeInfoDialog extends Dialog {
@@ -82,7 +73,7 @@ public class DialogHelper {
         }
     }
 
-    static class ProblemReportPopup extends AlertDialog {
+    public static class ProblemReportPopup extends AlertDialog {
         // TODO: 6/26/2017 Add view, and logic for this
 
         @BindView(R.id.problem_reported_at)
@@ -97,11 +88,22 @@ public class DialogHelper {
         @BindView(R.id.problem_details)
         TextView tvProblemDetails;
 
-        public ProblemReportPopup(@NonNull Context context) {
+        @BindView(R.id.cancel_btn)
+        Button cancelBtn;
+
+        @BindView(R.id.resolve_btn)
+        Button resolveBtn;
+
+        private OnDialogButtonsListener listener;
+        private ProblemReport problemReport;
+
+        public ProblemReportPopup(@NonNull Context context, ProblemReport problemReport) {
             super(context);
+            this.problemReport = problemReport;
+            listener = (OnDialogButtonsListener) context;
         }
 
-        public void showReportPopup(String problemType, String problemPriority, String problemDetails, Date reportedAt) {
+        public void loadDataIntoViews(String problemType, String problemPriority, String problemDetails, Date reportedAt) {
             tvProblemType.setText(problemType);
             tvProblemPriority.setText(problemPriority);
             tvProblemDetails.setText(problemDetails);
@@ -114,6 +116,25 @@ public class DialogHelper {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.dialog_problem_report);
             ButterKnife.bind(this);
+
+            cancelBtn.setOnClickListener(v -> dismiss());
+            resolveBtn.setOnClickListener(v -> {
+                listener.onResolveButtonClick(problemReport.getId());
+                dismiss();
+            });
+        }
+
+        public void showProblemReportInfo() {
+            this.show();
+
+            this.loadDataIntoViews(ProblemReportTranslator.problemTypeToString(problemReport.getProblemType()),
+                    ProblemReportTranslator.priorityTypeToString(problemReport.getProblemPriority()),
+                    problemReport.getProblemDetails(),
+                    problemReport.getReportedAt());
+        }
+
+        public interface OnDialogButtonsListener {
+            void onResolveButtonClick(int id);
         }
     }
 }
